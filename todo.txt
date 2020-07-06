@@ -1,0 +1,145 @@
+filesave=results_2019-10-30_net_balance_data_trn_classifier.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --data_in ${filename/_act_/_in_} --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 50 20 10 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_in/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_classifier --scale_loss 1
+i=$((i + 1))
+done
+echo
+
+filesave=results_2019-10-30_net_zinc_balance_data_trn_classifier.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --scale_zinc 1 --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 50 20 10 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_zinc/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_classifier --scale_loss 1
+i=$((i + 1))
+done
+echo
+
+filesave=results_2019-10-31_net_balance_data_scale2.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --data_in ${filename/_act_/_in_} --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 50 20 10 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_in/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_all --scale_loss 2
+i=$((i + 1))
+done
+echo
+
+filesave=results_2019-10-31_net_zinc_balance_data_scale2.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --scale_zinc 1 --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 50 20 10 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_zinc/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_all --scale_loss 2
+i=$((i + 1))
+done
+echo
+
+
+filesave=results_2019-11-01_net_balance_data_scale5.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --data_in ${filename/_act_/_in_} --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 50 20 10 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_in/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_all --scale_loss 5
+i=$((i + 1))
+done
+echo
+
+filesave=results_2019-11-01_net_zinc_balance_data_scale5.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --scale_zinc 1 --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 50 20 10 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_zinc/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_all --scale_loss 5
+i=$((i + 1))
+done
+echo
+
+# =================================================================
+
+filesave=results_2019-11-10_net_balance_data_1layer_classifier_HingeLoss.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python supervised_ae.py --data_act ${filename} --data_in ${filename/_act_/_in_} --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_in/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_all --scale_loss 1 --criterion_classifier HingeLoss
+i=$((i + 1))
+done
+echo
+
+filesave=results_2019-11-10_net_zinc_balance_data_1layer_classifier.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesavei * args.batch_size:(i + 1) * args.batch_size, :i * args.batch_size:(i + 1) * args.batch_size, :}
+python supervised_ae.py --data_act ${filename} --scale_zinc 1 --pretrain_epochs 75 --epochs 100 --dims_layers_ae 7000 4000 500 1000 100 --dims_layers_classifier 100 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_zinc/${tmp%%_*} --use_dropout --logger ${filesave} --procedure pre-training_ae training_all --scale_loss 1 --criterion_classifier HingeLoss
+i=$((i + 1))
+done
+echo
+
+
+
+filesave=results_2019-11-10_net_balance_data_AE_SVM_LOGR.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python ae_svm.py --data_act ${filename} --data_in ${filename/_act_/_in_} --pretrain_epochs 75 --dims_layers_ae 7000 4000 500 1000 100 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_in/${tmp%%_*} --use_dropout --logger ${filesave} --class_weight
+i=$((i + 1))
+done
+echo
+
+filesave=results_2019-11-10_net_zinc_balance_data_AE_SVM_LOGR.txt
+if [ -f ${filesave} ]; then rm ${filesave}; fi
+i=1
+files=($(find ./on_bits/ -type f -name "*act*"))
+for filename in ${files[*]}; do
+echo -en "\r[${i}|${#files[*]}]"
+echo "---------------------------------------------------------------------" >> ${filesave}
+tmp=${filename##*/}
+echo -n "${tmp%%_*} " >> ${filesave}
+python ae_svm.py --data_act ${filename} --scale_zinc 1 --pretrain_epochs 75 --dims_layers_ae 7000 4000 500 1000 100 --batch_size 50 --lr 0.0001 --dir_save /mnt/users/struski/local/chemia/act_zinc/${tmp%%_*} --use_dropout --logger ${filesave} --class_weight
+i=$((i + 1))
+done
+echo
+

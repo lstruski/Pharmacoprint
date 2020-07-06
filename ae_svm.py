@@ -4,7 +4,6 @@ from pathlib import Path, PurePosixPath
 
 import numpy as np
 import torch
-from scipy.sparse import load_npz
 from sklearn import svm
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score, matthews_corrcoef
@@ -14,6 +13,8 @@ from sklearn.model_selection import StratifiedShuffleSplit
 from tensorboardX import SummaryWriter
 from torch import nn
 from tqdm import tqdm
+
+from data import read_data
 
 
 class AutoEncoder(nn.Module):
@@ -128,9 +129,10 @@ def test_step(model_AE, criterion_AE, data_test, target, device, writer_tensorbo
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', default='./data/data', help='Name/path of target')
-    parser.add_argument('--name', default=['5HT2A'], nargs='+', help='Name of target')
-
+    parser.add_argument('--data_act', required=True, help='Path to data.')
+    parser.add_argument('--data_in', default=None, help='Path to data.')
+    parser.add_argument('--data_zinc', default=None, help='Path to data.')
+    parser.add_argument('--scale_zinc', type=int, default=1)
     parser.add_argument('--class_weight', action='store_true', default=None, help='Use balance weight')
 
     parser.add_argument('--pretrain_epochs', type=int, default=100, help="Number of epochs to pretrain model AE")
@@ -143,27 +145,53 @@ def main():
     parser.add_argument('--no-cuda', action='store_true', help='disables CUDA training')
     parser.add_argument('--seed', type=int, default=1234, help='random seed (default: 1)')
 
-    parser.add_argument('--save_dir', default='./outputs', help='Path to dictionary where will be save results.')
+    parser.add_argument('--dir_save', default='./outputs', help='Path to dictionary where will be save results.')
     parser.add_argument('--ae', default=None, help='Path to saved model.')
     parser.add_argument('--test', action='store_true', help='Test model')
     args = parser.parse_args()
+    
+    # current_date = datetime.now()
+    # current_date = current_date.strftime('%d%b_%H%M%S')
+    dir_save = '{}/tensorboard/{}'.format(args.dir_save, PurePosixPath(args.data_act).stem.replace('_act', ''))
+    Path(dir_save).mkdir(parents=True, exist_ok=True)
 
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
     use_cuda = not args.no_cuda and torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
 
-    id_file_target = 0
-    # current_date = datetime.now()
-    # current_date = current_date.strftime('%d%b_%H%M%S')
-    save_dir = f'{args.save_dir}/tensorboard/{args.name[id_file_target]}'
-    Path(save_dir).mkdir(parents=True, exist_ok=True)
+    # dataset
+    if args.data_zinc is not None:
+        data = read_data(args.data_act)
+        labels = np.ones(data.shape[0])
 
-    if 'pca' in PurePosixPath(args.data_dir).stem:
-        data = np.load(f'{args.data_dir}/{args.name[id_file_target]}.npz')['data']
+        np.random.seed(args.seed)
+        zinc = read_data(args.data_zinc)
+        idx = np.random.choice(zinc.shape[0], size=args.scale_zinc * data.shape[0])
+        data = np.concatenate((data, zinc[idx]), axis=0)
+        labels = np.concatenate((labels, -np.ones(data.shape[0] - labels.size)))
+    elif args.data_in is not None:
+        # args.data_act = './on_bits/A2A_act_onbits'
+        # args.data_in = './on_bits/A2A_in_onbits'
+
+        data = read_data(args.data_act)
+        labels = np.ones(data.shape[0])
+        data = np.concatenate((data, read_data(args.data_in)), axis=0)
+        labels = np.concatenate((labels, -np.ones(data.shape[0] - labels.size)))
     else:
-        data = load_npz(f'{args.data_dir}/{args.name[id_file_target]}.npz').todense()
-    labels = np.load(f'{args.data_dir}/../label/{args.name[id_file_target]}.npz')['lab']
+        raise SystemError('Type path to zinc or inactive file')
+
+    print('Data shape before delete columns with the same element in column:', data.shape)
+    idx = np.concatenate((np.where((data == 0).all(axis=0))[0], np.where((data == 1).all(axis=0))[0]))
+
+    # test
+    for i in idx:
+        tmp = data[:, idx[0]].sum()
+        assert tmp == 0 or tmp == data.shape[0], "Column '{:d}' does not have the same value!".format(i)
+
+    idx = np.setdiff1d(np.arange(data.shape[1]), idx)
+    data = data[:, idx]
+    print('Data shape:', data.shape)
 
     args.dims_layers_ae = [data.shape[1]] + args.dims_layers_ae
 
@@ -186,7 +214,7 @@ def main():
     criterion_ae = nn.MSELoss()
     optimizer = torch.optim.Adam(model_ae.parameters(), lr=args.lr, weight_decay=1e-5)
 
-    writer = SummaryWriter(logdir=save_dir)
+    writer = SummaryWriter(logdir=dir_save)
     epoch_tqdm = tqdm(range(args.pretrain_epochs), desc="Epoch pre-train loss")
     for epoch in epoch_tqdm:
         loss_train = train_step(model_ae, criterion_ae, optimizer,
@@ -228,7 +256,7 @@ def main():
     clf = GridSearchCV(svc, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc', return_train_score=True)
     clf.fit(low_data, labels)
 
-    save_file = f'{args.save_dir}/{args.name[id_file_target]}.txt'
+    save_file = '{}/{}.txt'.format(args.dir_save, PurePosixPath(args.data_act).stem.replace('_act', ''))
 
     with open(save_file, 'w') as f:
         f.write('{:.4f} {:.5f} | ACC\n'.format(clf.cv_results_['mean_test_acc'][clf.best_index_],
