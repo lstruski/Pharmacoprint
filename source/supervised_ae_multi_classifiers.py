@@ -239,6 +239,7 @@ def main():
     parser.add_argument('--criterion_classifier', default='BCELoss', choices=['BCELoss', 'HingeLoss'],
                         help='Kind of loss function')
     parser.add_argument('--scale', type=float, default=1, help='Scale of cost of classifier')
+    parser.add_argument('--save_model', action='store_true', help='Save all models')
     args = parser.parse_args()
 
     np.random.seed(args.seed)
@@ -336,9 +337,10 @@ def main():
             roc_auc[i].append(ra[i])
             m_corr[i].append(mc[i])
     writer.close()
-    torch.save(model_ae.state_dict(), f'{args.save_dir}/ae_model.pth')
-    for i in range(len(args.name)):
-        torch.save(models_classifier[i].state_dict(), f'{args.save_dir}/classifier_model_{args.name[i]}.pth')
+    if args.save_model:
+        torch.save(model_ae.state_dict(), f'{args.save_dir}/ae_model.pth')
+        for i in range(len(args.name)):
+            torch.save(models_classifier[i].state_dict(), f'{args.save_dir}/classifier_model_{args.name[i]}.pth')
 
     x = np.arange(args.epochs)
     fig = plt.figure(figsize=(10, 8))

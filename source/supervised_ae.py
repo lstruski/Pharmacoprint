@@ -216,6 +216,7 @@ def main():
     parser.add_argument('--criterion_classifier', default='BCELoss', choices=['BCELoss', 'HingeLoss'],
                         help='Kind of loss function')
     parser.add_argument('--scale_loss', type=float, default=1., help='Weight for loss of classifier')
+    parser.add_argument('--save_model', action='store_true', help='Save all models')
     args = parser.parse_args()
 
     np.random.seed(args.seed)
@@ -308,9 +309,10 @@ def main():
         roc_auc.append(ra)
         m_corr.append(mc)
     writer.close()
-    if model_ae is not None:
-        torch.save(model_ae.state_dict(), f'{args.save_dir}/ae_model-{args.name[id_file_target]}.pth')
-    torch.save(model_classifier.state_dict(), f'{args.save_dir}/classifier_model-{args.name[id_file_target]}.pth')
+    if args.save_model:
+        if model_ae is not None:
+            torch.save(model_ae.state_dict(), f'{args.save_dir}/ae_model-{args.name[id_file_target]}.pth')
+        torch.save(model_classifier.state_dict(), f'{args.save_dir}/classifier_model-{args.name[id_file_target]}.pth')
 
     save_file = f'{args.save_dir}/{args.name[id_file_target]}'
 
