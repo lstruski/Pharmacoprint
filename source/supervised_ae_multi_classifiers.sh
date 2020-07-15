@@ -11,12 +11,12 @@ fi
 outdir=/mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/supervised_ae_multi_classifiers_${current_date}
 
 ae_model="7000 4000 500 1000 100"
-classifier_model=("100" "100 25" "100 50 20 10")
+classifier_model=("100" "100-25" "100-50-20-10")
 
 if [[ "$2" == "" ]]; then
 
     for sc in 1 1.5 2 4; do for lr in 0.0001 0.00001; do for ep in 100 75 50 25 0; do for clr_model in ${classifier_model[@]}; do
-        add2output=lr_${lr}-pretrnEpoch_${ep}-scale_${sc}-clr_${clr_model// /-}
+        add2output=lr_${lr}-pretrnEpoch_${ep}-scale_${sc}-clr_${clr_model}
         proc="pre-training_ae training_all"
         if [[ "${ep}" == "0" ]]; then
             proc="training_all"
@@ -26,7 +26,7 @@ if [[ "$2" == "" ]]; then
         for d in ${dirs[@]}; do
             if [[ ! -d "${outdir}/${add2output}/${d}" ]]; then
 
-                command="python supervised_ae_multi_classifiers.py --data_dir ./data/${d} --name ${targets[@]} --pretrain_epochs ${ep} --epochs 150 --dims_layers_ae ${ae_model}  --dims_layers_classifier ${clr_model} --batch_size 50 --lr ${lr} --save_dir ${outdir}/${add2output}/${d} --use_dropout --procedure ${proc} --scale ${sc}"
+                command="python supervised_ae_multi_classifiers.py --data_dir ./data/${d} --name ${targets[@]} --pretrain_epochs ${ep} --epochs 150 --dims_layers_ae ${ae_model} --dims_layers_classifier ${clr_model//-/ } --batch_size 50 --lr ${lr} --save_dir ${outdir}/${add2output}/${d} --use_dropout --procedure ${proc} --scale ${sc}"
 
 
                 echo -e "\033[1;31mRUN: \033[0;1;32m${command}\033[0m"
