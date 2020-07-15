@@ -12,7 +12,7 @@ for d in ${dirs[@]}; do
 done
 #echo ${files[@]}
 
-if [ ! -d "./compare_scores" ]; then
+if [[ ! -d "./compare_scores" ]]; then
     mkdir ./compare_scores
 fi
 
@@ -38,7 +38,7 @@ for i in range(len(args.data)):
 
 data = pd.concat(data, ignore_index=True)
 #print(data)
-data.sort_values(by=['dataset'], ascending=True).to_csv('./compare_scores/results.csv', index=False, sep=';')
+data.sort_values(by=['dataset', 'mean'], ascending=[True, False]).to_csv('./compare_scores/results.csv', index=False, sep=';')
 
 grouped = data.groupby(['dataset', 'score_type'])
 #print(grouped.groups.keys())

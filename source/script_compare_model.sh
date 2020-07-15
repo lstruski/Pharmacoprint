@@ -12,12 +12,12 @@ num=($(echo ${dir} | tr "/" "\n"))
 num=$(( ${#num[@]} - 1))
 #echo $num
 
-if [ -f ${dir}/*results.csv ]; then
+if [[ -f ${dir}/*results.csv ]]; then
     rm ${dir}/*results.csv
 fi
 
 files=()
-for i in $(find ${dir} -type f -name "*.csv"); do
+for i in $(find ${dir} -mindepth 2 -type f -name "*.csv"); do
     files+=( ${i} )
 done
 
@@ -53,7 +53,8 @@ size = len(args.data)
 colors = {'ACC': 'red', 'ROC_AUC': 'green', 'MCC': 'blue'}
 
 df = data.loc[:, data.columns[:-size]]
-df['mean'] = data[data.columns[-size:]].max(axis=1)
+df['mean'] = data.loc[:, data.columns[-size:]].max(axis=1)
+df['idxmax'] = data[data.columns[-size:]].idxmax(axis=1)
 df.to_csv(f'{PurePosixPath(args.data[0]).parents[${num}]}/{PurePosixPath(args.data[0]).name}', index=False, sep=';')
 del df
 
@@ -64,7 +65,7 @@ grouped = data.groupby(['dataset'])
 #print(grouped.groups.keys())
 
 for title, group in grouped:
-    fig = plt.figure(figsize=(10, 6))
+    fig = plt.figure(figsize=(len(args.data) // 2, 6))
     plt.title(f'{title}', fontsize=15, fontname='serif', fontweight='bold')
 
     values = group[group.columns[-size:]].to_numpy()
