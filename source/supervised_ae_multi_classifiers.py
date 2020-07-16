@@ -239,7 +239,8 @@ def main():
     parser.add_argument('--criterion_classifier', default='BCELoss', choices=['BCELoss', 'HingeLoss'],
                         help='Kind of loss function')
     parser.add_argument('--scale', type=float, default=1, help='Scale of cost of classifier')
-    parser.add_argument('--save_model', action='store_true', help='Save all models')
+    parser.add_argument('--save_model', default=None, nargs='+', choices=['ae', 'clr', 'all'],
+                        help='Save selected models')
     args = parser.parse_args()
 
     np.random.seed(args.seed)
@@ -280,16 +281,18 @@ def main():
 
     model_ae = AutoEncoder(args.dims_layers_ae, args.use_dropout).to(device)
     if args.ae is not None:
+        print(f"\033[1;5;33mLoad model AE form '{args.ae}'\033[0m")
         if device.type == "cpu":
-            model_ae.load_state_dict(torch.load(args.model, map_location=lambda storage, loc: storage))
+            model_ae.load_state_dict(torch.load(args.ae, map_location=lambda storage, loc: storage))
         else:
-            model_ae.load_state_dict(torch.load(args.model))
+            model_ae.load_state_dict(torch.load(args.ae))
         model_ae.eval()
 
     models_classifier = []
     for i in range(len(args.name)):
         models_classifier.append(Classifier(args.dims_layers_classifier, args.use_dropout).to(device))
         if args.classifiers is not None:
+            print(f"\033[1;5;33mLoad model CLR[{i}] form '{args.classifiers[i]}'\033[0m")
             if device.type == "cpu":
                 models_classifier[-1].load_state_dict(torch.load(args.classifiers[i],
                                                                  map_location=lambda storage, loc: storage))
@@ -337,8 +340,9 @@ def main():
             roc_auc[i].append(ra[i])
             m_corr[i].append(mc[i])
     writer.close()
-    if args.save_model:
+    if args.save_model in ['ae', 'all']:
         torch.save(model_ae.state_dict(), f'{args.save_dir}/ae_model.pth')
+    if args.save_model in ['clr', 'all']:
         for i in range(len(args.name)):
             torch.save(models_classifier[i].state_dict(), f'{args.save_dir}/classifier_model_{args.name[i]}.pth')
 

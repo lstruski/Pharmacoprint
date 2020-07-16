@@ -241,6 +241,7 @@ def main():
 
     model_classifier = Classifier(args.dims_layers_classifier, args.use_dropout).to(device)
     if args.classifier is not None:
+        print(f"\033[1;5;33mLoad model CLR form '{args.classifier}'\033[0m")
         if device.type == "cpu":
             model_classifier.load_state_dict(torch.load(args.classifier, map_location=lambda storage, loc: storage))
         else:
@@ -262,10 +263,11 @@ def main():
 
         model_ae = AutoEncoder(args.dims_layers_ae, args.use_dropout).to(device)
         if args.ae is not None:
+            print(f"\033[1;5;33mLoad model AE form '{args.ae}'\033[0m")
             if device.type == "cpu":
-                model_ae.load_state_dict(torch.load(args.model, map_location=lambda storage, loc: storage))
+                model_ae.load_state_dict(torch.load(args.ae, map_location=lambda storage, loc: storage))
             else:
-                model_ae.load_state_dict(torch.load(args.model))
+                model_ae.load_state_dict(torch.load(args.ae))
             model_ae.eval()
 
         criterion_ae = nn.MSELoss()
