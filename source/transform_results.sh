@@ -85,3 +85,18 @@ done;done
 #./transform_results.sh data /mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/supervised_ae_08-07-2020 /mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/csv
 #./transform_results.sh all_data /mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/supervised_ae_multi_classifiers_08-07-2020 /mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/csv
 #find -type f -name commands_used.txt -exec zip -r results_szerszen.zip {} +;find -type f -name "*.csv" -exec zip -r results_szerszen.zip {} +
+
+
+#-------------
+# diff time
+#-------------
+
+# time_start=$(date +"%s")
+# ...
+
+# python -c "import sys
+# from datetime import timedelta
+# print(f'{timedelta(seconds=int(sys.argv[1]))}')
+# " $(( $(date +"%s") - ${time_start} ))
+
+
