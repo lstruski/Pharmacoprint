@@ -12,6 +12,9 @@ targets=(5HT2A 5HT2c 5HT6 D2 HIVint HIVprot HIVrev NMDA NOP NPC1 catB catL kappa
 echo "case;dataset;method;mean;std;score_type" > ${filename}
 echo -n ${name} >> ${filename}
 for t in ${targets[@]}; do
+    if [[ ! -f ${dir_search}/${t}.txt ]]; then
+        continue
+    fi
     echo -n ";${t}" >> ${filename}
 
     if [[ "${case}" == "1" ]]; then

@@ -8,7 +8,7 @@ if [[ "$1" == "" ]]; then
 else
     current_date=$1
 fi
-outdir=/mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/supervised_ae_multi_classifiers_${current_date}
+outdir=/mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/supervised_ae_multi_classifiers-task3_${current_date}
 
 ae_model="7000 4000 500 1000 100"
 classifier_model=("100" "100-25" "100-50-20-10")

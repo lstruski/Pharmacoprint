@@ -340,10 +340,12 @@ def main():
             roc_auc[i].append(ra[i])
             m_corr[i].append(mc[i])
     writer.close()
-    if args.save_model in ['ae', 'all']:
+    if args.save_model is not None and set(args.save_model).intersection(['ae', 'all']):
+        print(f'\033[1;33mSaving model AE to file "{args.save_dir}/ae_model.pth"\033[0m')
         torch.save(model_ae.state_dict(), f'{args.save_dir}/ae_model.pth')
-    if args.save_model in ['clr', 'all']:
+    if args.save_model is not None and set(args.save_model).intersection(['clr', 'all']):
         for i in range(len(args.name)):
+            print(f'\033[1;33mSaving model to CLR file "{args.save_dir}/classifier_model_{args.name[i]}.pth"\033[0m')
             torch.save(models_classifier[i].state_dict(), f'{args.save_dir}/classifier_model_{args.name[i]}.pth')
 
     x = np.arange(args.epochs)
