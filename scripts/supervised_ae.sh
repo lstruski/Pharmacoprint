@@ -8,6 +8,8 @@ if [[ "$1" == "" ]]; then
 else
     current_date=$1
 fi
+
+# change path!!!
 outdir=/mnt/users/struski/local/chemia/new_01_07_2020/inne_fingerprinty/supervised_ae_${current_date}
 
 ae_model="7000 4000 500 1000 100"
@@ -27,7 +29,7 @@ if [[ "$2" == "" ]]; then
                 if [[ ! -f "${outdir}/${add2output}/${d}/${t}.txt" ]]; then
                     echo -e "\033[0;1;31mDIR: ${d}\t \033[0;1;33mTARGET: ${t}\033[0m"
 
-                    command="python supervised_ae.py --data_dir ./data/${d} --name ${t} --pretrain_epochs ${ep} --epochs 150 --dims_layers_ae ${ae_model} --dims_layers_classifier ${clr_model//-/ } --batch_size 50 --lr ${lr} --save_dir ${outdir}/${add2output}/${d} --use_dropout --procedure ${proc} --scale_loss ${sc}"
+                    command="python ../source/supervised_ae.py --data_dir ../data/${d} --name ${t} --pretrain_epochs ${ep} --epochs 150 --dims_layers_ae ${ae_model} --dims_layers_classifier ${clr_model//-/ } --batch_size 50 --lr ${lr} --save_dir ${outdir}/${add2output}/${d} --use_dropout --procedure ${proc} --scale_loss ${sc}"
 
                     echo -e "\033[1;31mRUN: \033[0;1;32m${command}\033[0m"
                     eval ${command}
