@@ -26,7 +26,7 @@ bash ae_clr.sh
 bash ae_other.sh
 bash other
 bash supervised_ae.sh
-bash supervised_ae_multi_classifiers
+bash supervised_ae_multi_classifiers.sh
 ```
 
 :warning: Please, in the above files change path to the output directory (variable '*outdir*').
