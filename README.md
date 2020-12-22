@@ -1,10 +1,12 @@
 # chemia_fingerprints
 
-Python 3.6 implementation of ...
+Python code reproducing the results reported in the paper:
+
+D. Warszycki, Ł. Struski, M. Śmieja, R. Kafel, R. Kurczab, "Pharmacoprint - a new approach in computer-aided drug design combining pharmacophore fingerprint and artificial intelligence", 2020
 
 # Requirements
 
-Please, install the following packages
+Please, install the following packages:
 * numpy
 * scipy
 * sklearn
@@ -18,7 +20,7 @@ The data are in directory [data](./data).
 
 # Demo
 
-In directory [scripts](./scripts) we prepared bash scripts to reproduce our results. Use the following commands:
+Directory [scripts](./scripts) contains bash scripts to reproduce the results. Use the following commands:
 ```bash
 bash ae_clr.sh
 bash ae_other.sh
