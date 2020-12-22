@@ -1,4 +1,4 @@
-# chemia_fingerprints
+# Pharmacoprint
 
 Python code reproducing the results reported in the paper:
 
