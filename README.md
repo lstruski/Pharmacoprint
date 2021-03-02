@@ -20,13 +20,13 @@ The input data can be downloaded from [here](https://ujchmura-my.sharepoint.com/
 
 # Run
 
-To run the code, you shoul download input data from [here](https://ujchmura-my.sharepoint.com/:f:/g/personal/lukasz_struski_uj_edu_pl/Egao2rcXN8hGnTJtNH5cs88BsHzos__xiDA_Z-vsUvajwg?e=F7Sqer) and put them in the directory [source](./source).
+To run the code, you should download input data from [here](https://ujchmura-my.sharepoint.com/:f:/g/personal/lukasz_struski_uj_edu_pl/Egao2rcXN8hGnTJtNH5cs88BsHzos__xiDA_Z-vsUvajwg?e=F7Sqer) and put them in the directory [source](./source).
 
-The directory [source](./source) contains bash scripts to reproduce the results. Use the following commands:
+The directory [source](./source) contains bash scripts to reproduce our results. Use the following commands to run subsequent models:
 ```bash
-bash other.sh
-bash ae_other.sh
-bash supervised_ae.sh
+bash other.sh         #classical machine learninig models such as SVM, logistic regression, PCA, etc.
+bash ae_other.sh      #classifiers, which use auto-encoder reduction
+bash supervised_ae.sh #supervised auto-encoder classifiers
 ```
 
 :warning: Please, in the above files change the path to the output directory (variable '*outdir*'). Default: results will be saved in the directory 'results'. 
@@ -38,7 +38,7 @@ tensorboard --logdir ./results
 
 # Results
 
-Detailed resukts of the experiments reported in the paper can be found in [results](./results)
+Detailed results of the experiments reported in the paper can be found in [results](./results)
 
 
 # Tips
