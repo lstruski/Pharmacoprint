@@ -1,0 +1,2 @@
+idx;params;roc_auc;acc;mcc;bal;recall;max_roc_auc;max_acc;max_mcc;max_bal;max_recall;pre-fit_time;pre-score_time;fit_time;score_time
+1;pretrain_epochs:0,dims_layers_ae:[12973, 7000, 4000, 500, 1000, 100],dims_layers_classifier:[100],batch_size:50,lr:0.0001use_dropout:True,procedure:['training_all'],scale_loss:4.0,earlyStopping:10;0.935839258414424;0.9014778325123153;0.8029946377793505;0.9014778325123153;0.896551724137931;0.9546215632507462;0.8940886699507389;0.7924288517503274;0.8940886699507389;0.9458128078817734;0;0;11.29912257194519;0.039128269468035014

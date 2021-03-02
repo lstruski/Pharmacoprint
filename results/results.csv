@@ -1,0 +1,694 @@
+dir;receptor;fingerprint;model;mean_test_auc;mean_test_bal-acc;mean_test_acc;mean_test_mcc;mean_test_recall
+data;NPC1;FP;Linear SVM;0.993;0.045;0.045;-0.91;0.03
+data;NPC1;KRFP;RBF SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;Substr;RBF SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;Ext;RBF SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;PubCh;RBF SVM;0.993;0.045;0.045;-0.91;0.03
+data;NPC1;PubCh;Linear SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;MACCS;RBF SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;MACCS;Linear SVM;0.993;0.045;0.045;-0.915;0.03
+data;NPC1;KRFP;Linear SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;GraphOnly;RBF SVM;0.993;0.061;0.061;-0.888;0.0
+data;NPC1;GraphOnly;Linear SVM;0.993;0.045;0.045;-0.91;0.03
+data;NPC1;Ext;Linear SVM;0.993;0.045;0.045;-0.915;0.0
+data;NPC1;FP;RBF SVM;0.993;0.045;0.045;-0.915;0.0
+data;HIVint;3D_noH;LogisticRegression;0.987;0.962;0.979;0.916;0.939
+data;HIVint;3D_noH;Linear SVM;0.987;0.96;0.975;0.903;0.939
+data;HIVint;3D_noH;RBF SVM;0.986;0.952;0.983;0.929;0.909
+data;HIVint;3D_H;supervised_AE;0.985;0.967;0.967;0.936;0.944
+pca_0.9;delta;3D_H;RBF SVM;0.982;0.929;0.932;0.852;0.938
+data;delta;3D_H;RBF SVM;0.982;0.934;0.936;0.862;0.94
+data;delta;2D_noH;LogisticRegression;0.982;0.936;0.934;0.859;0.931
+data;delta;2D_H;LogisticRegression;0.982;0.936;0.934;0.859;0.931
+data;NPC1;Est;RBF SVM;0.981;0.061;0.061;-0.888;0.0
+data;delta;3D_H;LogisticRegression;0.98;0.934;0.936;0.861;0.94
+data;HIVint;3D_H;sAE_SoftMax;0.979;0.96;0.96;0.923;0.924
+pca_100;delta;3D_H;RBF SVM;0.979;0.937;0.937;0.865;0.938
+data;delta;3D_H;Linear SVM;0.978;0.935;0.933;0.857;0.928
+data;delta;2D_noH;RBF SVM;0.978;0.935;0.935;0.861;0.936
+data;delta;2D_H;Linear SVM;0.978;0.936;0.935;0.861;0.934
+data;delta;2D_H;RBF SVM;0.978;0.935;0.935;0.861;0.936
+data;delta;2D_noH;Linear SVM;0.978;0.936;0.935;0.861;0.934
+data;catL;3D_H;supervised_AE;0.977;0.918;0.918;0.847;0.836
+data;delta;3D_noH;LogisticRegression;0.976;0.918;0.928;0.84;0.95
+pca_0.9;delta;3D_H;LogisticRegression;0.976;0.933;0.932;0.854;0.93
+data;delta;3D_noH;RBF SVM;0.975;0.911;0.923;0.829;0.95
+data;NPC1;Est;Linear SVM;0.975;0.121;0.121;-0.784;0.03
+data;delta;Ext;RBF SVM;0.973;0.907;0.91;0.807;0.917
+pca_0.9;delta;3D_H;Linear SVM;0.973;0.93;0.928;0.846;0.923
+data;delta;FP;RBF SVM;0.972;0.914;0.917;0.822;0.923
+pca_0.9;HIVint;3D_H;LogisticRegression;0.972;0.934;0.974;0.892;0.879
+pca_100;HIVint;3D_H;RBF SVM;0.972;0.917;0.965;0.854;0.848
+data;catL;KRFP;RBF SVM;0.971;0.925;0.941;0.849;0.889
+data;mi;3D_H;LogisticRegression;0.971;0.905;0.923;0.808;0.946
+data;5HT6;Ext;RBF SVM;0.97;0.821;0.95;0.73;0.988
+data;mi;2D_H;RBF SVM;0.97;0.915;0.935;0.836;0.959
+data;mi;2D_noH;RBF SVM;0.97;0.915;0.935;0.836;0.959
+data;HIVint;3D_H;LogisticRegression;0.97;0.952;0.983;0.929;0.909
+pca_100;HIVint;3D_H;LogisticRegression;0.97;0.886;0.935;0.752;0.818
+data;HIVint;2D_H;RBF SVM;0.969;0.826;0.942;0.733;0.667
+pca_0.9;HIVint;3D_H;RBF SVM;0.969;0.947;0.974;0.896;0.909
+data;HIVint;2D_noH;RBF SVM;0.969;0.826;0.942;0.733;0.667
+data;delta;3D_noH;Linear SVM;0.969;0.912;0.922;0.826;0.944
+data;delta;FP;LogisticRegression;0.969;0.906;0.913;0.811;0.93
+data;catL;FP;LogisticRegression;0.968;0.891;0.912;0.777;0.847
+data;catL;Ext;RBF SVM;0.968;0.899;0.897;0.762;0.903
+data;delta;Ext;LogisticRegression;0.968;0.911;0.917;0.82;0.932
+data;5HT6;3D_noH;LogisticRegression;0.968;0.892;0.936;0.733;0.95
+data;catL;FP;RBF SVM;0.968;0.893;0.908;0.772;0.861
+pca_0.9;HIVint;3D_H;Linear SVM;0.968;0.944;0.97;0.878;0.909
+data;NPC1;Substr;Linear SVM;0.968;0.045;0.045;-0.915;0.03
+data;catL;3D_H;sAE_SoftMax;0.967;0.91;0.91;0.827;0.851
+data;5HT6;2D_H;LogisticRegression;0.967;0.906;0.927;0.721;0.934
+data;HIVint;2D_noH;Linear SVM;0.967;0.856;0.951;0.77;0.727
+data;HIVint;2D_H;Linear SVM;0.967;0.856;0.951;0.77;0.727
+data;5HT6;2D_noH;LogisticRegression;0.967;0.906;0.927;0.721;0.934
+pca_100;delta;3D_H;LogisticRegression;0.967;0.915;0.914;0.818;0.913
+data;delta;3D_H;supervised_AE;0.967;0.939;0.939;0.878;0.93
+data;mi;3D_H;RBF SVM;0.966;0.898;0.921;0.801;0.949
+data;catL;FP;Linear SVM;0.966;0.891;0.912;0.778;0.847
+data;HIVint;3D_H;RBF SVM;0.965;0.949;0.978;0.912;0.909
+data;mi;3D_H;Linear SVM;0.965;0.895;0.913;0.787;0.936
+data;delta;Ext;Linear SVM;0.965;0.896;0.902;0.788;0.917
+pca_100;HIVint;3D_H;Linear SVM;0.965;0.881;0.926;0.724;0.818
+data;HIVprot;3D_noH;LogisticRegression;0.964;0.893;0.92;0.767;0.939
+data;delta;FP;Linear SVM;0.964;0.914;0.917;0.822;0.923
+data;D2;2D_H;RBF SVM;0.964;0.899;0.908;0.798;0.927
+data;HIVint;3D_H;Linear SVM;0.964;0.949;0.978;0.912;0.909
+data;catL;Ext;LogisticRegression;0.964;0.874;0.886;0.725;0.847
+data;D2;2D_noH;RBF SVM;0.964;0.899;0.908;0.798;0.927
+data;mi;KRFP;RBF SVM;0.964;0.901;0.922;0.807;0.947
+data;HIVprot;2D_noH;LogisticRegression;0.963;0.895;0.919;0.768;0.937
+data;HIVint;GraphOnly;RBF SVM;0.963;0.909;0.931;0.749;0.879
+data;HIVprot;2D_H;LogisticRegression;0.963;0.895;0.919;0.768;0.937
+data;kappa;3D_noH;LogisticRegression;0.963;0.892;0.915;0.776;0.938
+data;5HT6;FP;RBF SVM;0.963;0.873;0.95;0.754;0.973
+pca_100;delta;3D_H;Linear SVM;0.962;0.913;0.912;0.812;0.909
+data;5HT6;2D_noH;RBF SVM;0.962;0.863;0.944;0.744;0.971
+data;mi;3D_noH;LogisticRegression;0.962;0.917;0.932;0.83;0.95
+data;5HT6;2D_H;RBF SVM;0.962;0.863;0.944;0.744;0.971
+data;catL;GraphOnly;RBF SVM;0.962;0.914;0.912;0.793;0.917
+pca_0.9;mi;3D_H;LogisticRegression;0.962;0.888;0.891;0.745;0.895
+data;HIVint;2D_H;LogisticRegression;0.961;0.841;0.946;0.752;0.697
+data;HIVint;GraphOnly;Linear SVM;0.961;0.912;0.935;0.762;0.879
+data;HIVint;2D_noH;LogisticRegression;0.961;0.841;0.946;0.752;0.697
+data;catL;2D_noH;Linear SVM;0.961;0.894;0.916;0.788;0.847
+data;catL;3D_H;RBF SVM;0.961;0.893;0.908;0.771;0.861
+data;D2;2D_H;LogisticRegression;0.961;0.908;0.913;0.811;0.926
+data;D2;2D_noH;LogisticRegression;0.961;0.908;0.913;0.811;0.926
+data;catL;2D_H;Linear SVM;0.961;0.894;0.916;0.788;0.847
+data;kappa;KRFP;RBF SVM;0.961;0.895;0.924;0.8;0.956
+data;kappa;3D_noH;Linear SVM;0.961;0.894;0.912;0.773;0.93
+data;5HT6;3D_noH;RBF SVM;0.961;0.897;0.929;0.719;0.939
+data;5HT6;Ext;LogisticRegression;0.96;0.889;0.947;0.752;0.964
+data;HIVprot;2D_noH;RBF SVM;0.96;0.897;0.903;0.741;0.908
+data;HIVprot;2D_noH;Linear SVM;0.96;0.899;0.918;0.768;0.932
+data;HIVprot;2D_H;RBF SVM;0.96;0.897;0.903;0.741;0.908
+data;kappa;2D_noH;LogisticRegression;0.96;0.885;0.898;0.744;0.912
+data;mi;3D_noH;RBF SVM;0.96;0.9;0.927;0.813;0.958
+data;HIVprot;2D_H;Linear SVM;0.96;0.899;0.918;0.768;0.932
+data;kappa;2D_H;LogisticRegression;0.96;0.885;0.898;0.744;0.912
+data;5HT6;3D_noH;Linear SVM;0.96;0.882;0.927;0.704;0.942
+data;mi;2D_noH;LogisticRegression;0.959;0.919;0.93;0.827;0.943
+data;5HT6;Ext;Linear SVM;0.959;0.904;0.943;0.748;0.954
+data;5HT6;2D_noH;Linear SVM;0.959;0.901;0.934;0.734;0.946
+data;catL;3D_H;LogisticRegression;0.959;0.891;0.905;0.764;0.861
+pca_0.9;mi;3D_H;RBF SVM;0.959;0.889;0.893;0.75;0.898
+data;mi;2D_H;LogisticRegression;0.959;0.919;0.93;0.827;0.943
+data;5HT6;2D_H;Linear SVM;0.959;0.901;0.934;0.734;0.946
+data;HIVprot;3D_noH;RBF SVM;0.958;0.895;0.896;0.727;0.897
+data;delta;GraphOnly;RBF SVM;0.958;0.905;0.909;0.804;0.919
+data;kappa;3D_noH;RBF SVM;0.958;0.882;0.913;0.769;0.945
+data;catL;2D_H;RBF SVM;0.958;0.894;0.923;0.803;0.833
+data;HIVint;KRFP;RBF SVM;0.958;0.886;0.957;0.821;0.788
+data;5HT6;GraphOnly;RBF SVM;0.958;0.83;0.946;0.714;0.98
+data;HIVint;KRFP;Linear SVM;0.958;0.912;0.957;0.827;0.848
+data;catL;KRFP;LogisticRegression;0.958;0.888;0.901;0.757;0.861
+data;catL;2D_noH;RBF SVM;0.958;0.894;0.923;0.803;0.833
+pca_0.9;mi;3D_H;Linear SVM;0.958;0.891;0.894;0.753;0.898
+data;mi;KRFP;LogisticRegression;0.957;0.891;0.904;0.767;0.92
+data;D2;2D_noH;Linear SVM;0.956;0.903;0.9;0.789;0.893
+data;5HT6;KRFP;LogisticRegression;0.956;0.876;0.935;0.711;0.953
+data;HIVint;KRFP;LogisticRegression;0.956;0.929;0.965;0.862;0.879
+data;5HT2A;FP;RBF SVM;0.956;0.839;0.902;0.713;0.955
+data;D2;2D_H;Linear SVM;0.956;0.903;0.9;0.789;0.893
+data;catL;3D_noH;RBF SVM;0.956;0.829;0.879;0.682;0.722
+data;kappa;3D_H;LogisticRegression;0.956;0.888;0.903;0.756;0.92
+data;kappa;FP;RBF SVM;0.956;0.871;0.903;0.747;0.938
+data;kappa;3D_H;RBF SVM;0.956;0.881;0.903;0.751;0.928
+data;HIVprot;3D_noH;Linear SVM;0.956;0.89;0.914;0.754;0.932
+data;delta;3D_H;sAE_SoftMax;0.956;0.938;0.938;0.876;0.934
+data;5HT6;3D_H;supervised_AE;0.956;0.904;0.904;0.812;0.959
+data;5HT6;3D_H;sAE_SoftMax;0.956;0.904;0.904;0.812;0.959
+pca_0.9;catL;3D_H;RBF SVM;0.955;0.847;0.886;0.704;0.764
+data;5HT6;MACCS;RBF SVM;0.955;0.844;0.929;0.67;0.954
+data;HIVprot;3D_H;LogisticRegression;0.955;0.884;0.917;0.754;0.941
+data;catL;3D_noH;LogisticRegression;0.955;0.838;0.886;0.701;0.736
+data;catL;3D_H;Linear SVM;0.955;0.874;0.886;0.722;0.847
+data;HIVint;MACCS;RBF SVM;0.954;0.902;0.939;0.77;0.848
+data;5HT2A;KRFP;RBF SVM;0.954;0.862;0.898;0.718;0.929
+data;5HT2A;Ext;RBF SVM;0.954;0.86;0.896;0.71;0.926
+data;catL;Ext;Linear SVM;0.954;0.886;0.897;0.747;0.861
+data;HIVint;GraphOnly;LogisticRegression;0.954;0.884;0.931;0.735;0.818
+data;mi;3D_noH;Linear SVM;0.954;0.898;0.92;0.797;0.946
+data;mi;FP;RBF SVM;0.954;0.879;0.906;0.765;0.941
+data;kappa;2D_H;RBF SVM;0.954;0.88;0.9;0.743;0.919
+data;kappa;2D_noH;RBF SVM;0.954;0.88;0.9;0.743;0.919
+pca_100;catL;3D_H;RBF SVM;0.954;0.866;0.908;0.758;0.778
+data;5HT2A;2D_H;LogisticRegression;0.953;0.891;0.906;0.745;0.917
+data;catL;2D_H;LogisticRegression;0.953;0.889;0.916;0.786;0.833
+data;5HT2A;2D_noH;LogisticRegression;0.953;0.891;0.906;0.745;0.917
+data;catL;2D_noH;LogisticRegression;0.953;0.889;0.916;0.786;0.833
+data;kappa;2D_H;Linear SVM;0.953;0.896;0.904;0.76;0.912
+data;catL;GraphOnly;LogisticRegression;0.953;0.902;0.908;0.776;0.889
+data;D2;3D_H;LogisticRegression;0.953;0.882;0.887;0.753;0.897
+data;kappa;Ext;RBF SVM;0.953;0.882;0.9;0.747;0.92
+data;kappa;2D_noH;Linear SVM;0.953;0.896;0.904;0.76;0.912
+pca_100;mi;3D_H;RBF SVM;0.952;0.896;0.891;0.752;0.885
+data;5HT2c;2D_H;RBF SVM;0.951;0.88;0.884;0.748;0.893
+data;5HT2c;2D_noH;RBF SVM;0.951;0.88;0.884;0.748;0.893
+data;mi;2D_noH;Linear SVM;0.951;0.901;0.914;0.789;0.931
+data;NOP;FP;Linear SVM;0.951;0.867;0.86;0.726;0.907
+data;5HT2c;2D_noH;RBF SVM;0.951;0.88;0.884;0.748;0.893
+data;D2;FP;RBF SVM;0.951;0.874;0.886;0.747;0.912
+data;mi;Ext;RBF SVM;0.951;0.897;0.916;0.791;0.939
+data;mi;KRFP;Linear SVM;0.951;0.892;0.906;0.772;0.924
+data;mi;2D_H;Linear SVM;0.951;0.901;0.914;0.789;0.931
+data;5HT2A;2D_H;RBF SVM;0.95;0.885;0.902;0.734;0.916
+data;5HT2A;2D_noH;RBF SVM;0.95;0.885;0.902;0.734;0.916
+data;5HT6;KRFP;RBF SVM;0.95;0.895;0.917;0.677;0.924
+data;NOP;FP;LogisticRegression;0.95;0.883;0.876;0.76;0.926
+data;5HT6;KRFP;Linear SVM;0.95;0.875;0.923;0.676;0.937
+data;delta;GraphOnly;LogisticRegression;0.95;0.866;0.873;0.725;0.89
+data;D2;3D_H;RBF SVM;0.95;0.882;0.894;0.765;0.921
+data;mi;PubCh;RBF SVM;0.95;0.896;0.912;0.784;0.933
+pca_0.9;D2;3D_H;RBF SVM;0.949;0.878;0.877;0.738;0.875
+data;5HT2A;3D_H;LogisticRegression;0.949;0.878;0.897;0.725;0.913
+data;catL;3D_noH;Linear SVM;0.949;0.845;0.89;0.71;0.75
+data;HIVint;PubCh;RBF SVM;0.949;0.917;0.965;0.852;0.848
+pca_0.9;kappa;3D_H;LogisticRegression;0.948;0.87;0.868;0.69;0.865
+data;mi;FP;LogisticRegression;0.948;0.885;0.898;0.752;0.915
+data;HIVint;PubCh;Linear SVM;0.948;0.949;0.978;0.911;0.909
+data;HIVprot;PubCh;RBF SVM;0.948;0.876;0.902;0.72;0.921
+data;5HT2A;3D_H;RBF SVM;0.948;0.881;0.901;0.734;0.917
+data;HIVprot;3D_H;RBF SVM;0.947;0.883;0.915;0.75;0.938
+data;D2;Ext;RBF SVM;0.947;0.872;0.887;0.748;0.92
+data;catL;PubCh;RBF SVM;0.947;0.887;0.912;0.779;0.833
+data;HIVprot;3D_H;Linear SVM;0.947;0.886;0.913;0.749;0.933
+data;NOP;Ext;LogisticRegression;0.947;0.915;0.907;0.821;0.963
+data;HIVint;FP;Linear SVM;0.947;0.927;0.961;0.846;0.879
+pca_0.9;kappa;3D_H;RBF SVM;0.947;0.885;0.899;0.746;0.914
+pca_0.9;HIVprot;3D_H;LogisticRegression;0.947;0.861;0.878;0.67;0.89
+data;D2;3D_noH;RBF SVM;0.947;0.877;0.884;0.75;0.901
+data;mi;MACCS;RBF SVM;0.947;0.895;0.912;0.784;0.934
+data;5HT2A;3D_noH;LogisticRegression;0.947;0.879;0.913;0.751;0.94
+data;catB;3D_noH;LogisticRegression;0.946;0.899;0.899;0.8;0.879
+data;NOP;3D_H;LogisticRegression;0.946;0.899;0.891;0.792;0.944
+pca_0.9;HIVprot;3D_H;RBF SVM;0.946;0.877;0.887;0.697;0.894
+data;kappa;3D_H;Linear SVM;0.946;0.887;0.899;0.748;0.912
+data;catB;KRFP;RBF SVM;0.946;0.869;0.87;0.741;0.848
+data;catL;KRFP;Linear SVM;0.946;0.886;0.897;0.749;0.861
+data;NMDA;3D_H;sAE_SoftMax;0.945;0.911;0.911;0.824;0.938
+data;NMDA;3D_H;supervised_AE;0.945;0.911;0.911;0.824;0.938
+data;HIVint;FP;LogisticRegression;0.945;0.932;0.97;0.876;0.879
+data;delta;GraphOnly;Linear SVM;0.945;0.872;0.877;0.735;0.888
+pca_100;kappa;3D_H;RBF SVM;0.945;0.892;0.879;0.727;0.865
+data;kappa;FP;LogisticRegression;0.945;0.882;0.905;0.755;0.93
+data;NOP;KRFP;LogisticRegression;0.945;0.878;0.876;0.751;0.889
+data;5HT2A;2D_H;Linear SVM;0.945;0.886;0.895;0.724;0.902
+data;D2;3D_H;Linear SVM;0.945;0.885;0.883;0.751;0.878
+data;5HT2A;2D_noH;Linear SVM;0.945;0.886;0.895;0.724;0.902
+data;HIVint;FP;RBF SVM;0.944;0.927;0.961;0.843;0.879
+data;D2;3D_noH;LogisticRegression;0.944;0.882;0.887;0.756;0.898
+data;kappa;PubCh;RBF SVM;0.944;0.879;0.9;0.745;0.924
+data;5HT2A;3D_noH;RBF SVM;0.944;0.886;0.895;0.724;0.902
+pca_100;D2;3D_H;RBF SVM;0.943;0.879;0.89;0.757;0.915
+pca_0.9;D2;3D_H;LogisticRegression;0.943;0.869;0.873;0.726;0.882
+data;kappa;KRFP;LogisticRegression;0.943;0.887;0.905;0.758;0.924
+data;5HT6;FP;LogisticRegression;0.943;0.869;0.943;0.729;0.964
+data;kappa;3D_H;sAE_SoftMax;0.943;0.931;0.931;0.865;0.886
+data;kappa;3D_H;supervised_AE;0.943;0.931;0.931;0.865;0.886
+pca_0.9;catL;3D_H;LogisticRegression;0.942;0.848;0.861;0.666;0.819
+pca_0.9;HIVprot;3D_H;Linear SVM;0.942;0.875;0.878;0.683;0.88
+data;NOP;FP;RBF SVM;0.942;0.867;0.86;0.729;0.907
+data;D2;KRFP;RBF SVM;0.942;0.877;0.885;0.747;0.902
+data;5HT2A;3D_H;Linear SVM;0.942;0.872;0.884;0.7;0.894
+data;HIVprot;KRFP;RBF SVM;0.942;0.88;0.92;0.76;0.95
+data;catL;GraphOnly;Linear SVM;0.941;0.884;0.908;0.766;0.833
+data;5HT2c;2D_noH;LogisticRegression;0.941;0.873;0.882;0.74;0.901
+data;mi;Ext;LogisticRegression;0.941;0.876;0.89;0.734;0.906
+pca_0.9;kappa;3D_H;Linear SVM;0.941;0.855;0.857;0.664;0.859
+data;catB;2D_noH;LogisticRegression;0.941;0.887;0.888;0.776;0.868
+pca_100;kappa;3D_H;LogisticRegression;0.941;0.873;0.853;0.679;0.831
+data;5HT2c;2D_H;LogisticRegression;0.941;0.873;0.882;0.74;0.901
+data;5HT2A;MACCS;RBF SVM;0.941;0.857;0.877;0.676;0.893
+data;catB;KRFP;LogisticRegression;0.941;0.861;0.862;0.723;0.848
+data;catB;2D_H;LogisticRegression;0.941;0.887;0.888;0.776;0.868
+data;5HT2c;2D_noH;LogisticRegression;0.941;0.873;0.882;0.74;0.901
+pca_100;HIVprot;3D_H;RBF SVM;0.94;0.872;0.897;0.709;0.916
+data;HIVprot;FP;RBF SVM;0.94;0.883;0.92;0.761;0.947
+data;catB;3D_noH;RBF SVM;0.94;0.885;0.885;0.771;0.874
+data;NOP;PubCh;LogisticRegression;0.94;0.899;0.891;0.791;0.944
+data;catB;3D_H;LogisticRegression;0.94;0.878;0.879;0.757;0.848
+data;5HT2A;3D_noH;Linear SVM;0.94;0.887;0.908;0.746;0.925
+data;5HT2c;3D_H;RBF SVM;0.94;0.838;0.864;0.693;0.917
+data;catB;Ext;RBF SVM;0.939;0.875;0.876;0.753;0.866
+data;5HT6;FP;Linear SVM;0.939;0.871;0.937;0.711;0.956
+data;NOP;2D_noH;LogisticRegression;0.939;0.898;0.894;0.792;0.93
+data;kappa;Ext;LogisticRegression;0.939;0.881;0.899;0.745;0.918
+data;NOP;2D_H;LogisticRegression;0.939;0.898;0.894;0.792;0.93
+data;catB;3D_noH;Linear SVM;0.939;0.879;0.88;0.76;0.874
+data;HIVrev;FP;RBF SVM;0.939;0.861;0.866;0.726;0.827
+data;HIVprot;FP;LogisticRegression;0.938;0.859;0.887;0.682;0.907
+data;D2;3D_noH;Linear SVM;0.938;0.879;0.878;0.742;0.876
+data;5HT2A;3D_H;supervised_AE;0.937;0.895;0.895;0.791;0.871
+pca_0.9;5HT2A;3D_H;RBF SVM;0.937;0.87;0.86;0.668;0.851
+data;catB;Ext;LogisticRegression;0.937;0.861;0.862;0.724;0.854
+data;HIVprot;KRFP;LogisticRegression;0.937;0.873;0.897;0.71;0.915
+data;catB;3D_H;Linear SVM;0.937;0.884;0.884;0.769;0.866
+data;catB;3D_H;RBF SVM;0.937;0.884;0.884;0.768;0.877
+pca_0.9;5HT2A;3D_H;LogisticRegression;0.937;0.855;0.852;0.644;0.85
+data;HIVint;PubCh;LogisticRegression;0.937;0.917;0.965;0.858;0.848
+data;HIVrev;3D_H;LogisticRegression;0.937;0.844;0.844;0.686;0.846
+data;kappa;MACCS;RBF SVM;0.937;0.851;0.879;0.692;0.91
+pca_0.9;D2;3D_H;Linear SVM;0.937;0.867;0.861;0.711;0.848
+data;mi;PubCh;LogisticRegression;0.936;0.864;0.875;0.704;0.89
+data;HIVrev;Ext;LogisticRegression;0.936;0.862;0.86;0.721;0.877
+data;mi;FP;Linear SVM;0.936;0.87;0.898;0.745;0.933
+data;catB;2D_H;RBF SVM;0.936;0.888;0.888;0.776;0.879
+data;5HT2c;FP;RBF SVM;0.936;0.856;0.861;0.703;0.873
+data;HIVprot;PubCh;LogisticRegression;0.936;0.85;0.871;0.649;0.886
+data;catB;FP;RBF SVM;0.936;0.864;0.864;0.729;0.854
+data;D2;PubCh;RBF SVM;0.936;0.875;0.878;0.737;0.885
+data;kappa;Ext;Linear SVM;0.936;0.886;0.894;0.74;0.904
+data;catB;2D_noH;RBF SVM;0.936;0.888;0.888;0.776;0.879
+data;5HT2A;PubCh;RBF SVM;0.936;0.843;0.875;0.662;0.903
+data;mi;3D_H;supervised_AE;0.936;0.901;0.901;0.803;0.897
+data;mi;3D_H;sAE_SoftMax;0.936;0.901;0.901;0.803;0.897
+data;NOP;KRFP;Linear SVM;0.935;0.88;0.876;0.752;0.907
+pca_100;5HT6;3D_H;RBF SVM;0.935;0.85;0.919;0.643;0.939
+data;catB;2D_noH;Linear SVM;0.935;0.879;0.88;0.759;0.874
+data;NOP;PubCh;Linear SVM;0.935;0.876;0.868;0.747;0.926
+data;5HT2c;2D_noH;Linear SVM;0.935;0.859;0.873;0.717;0.901
+data;kappa;FP;Linear SVM;0.935;0.875;0.89;0.725;0.906
+data;5HT2c;2D_H;Linear SVM;0.935;0.859;0.873;0.717;0.901
+data;catB;FP;LogisticRegression;0.935;0.864;0.864;0.729;0.842
+data;catB;2D_H;Linear SVM;0.935;0.879;0.88;0.759;0.874
+data;5HT2c;2D_noH;Linear SVM;0.935;0.859;0.873;0.717;0.901
+data;5HT2A;3D_H;sAE_SoftMax;0.935;0.895;0.895;0.793;0.876
+data;NOP;3D_noH;LogisticRegression;0.934;0.867;0.86;0.727;0.907
+data;NOP;KRFP;RBF SVM;0.934;0.874;0.868;0.74;0.907
+data;kappa;KRFP;Linear SVM;0.934;0.88;0.888;0.727;0.898
+data;5HT2c;3D_H;LogisticRegression;0.934;0.844;0.864;0.694;0.905
+data;5HT6;GraphOnly;LogisticRegression;0.934;0.858;0.913;0.632;0.929
+data;catB;Ext;Linear SVM;0.934;0.855;0.856;0.714;0.825
+pca_100;HIVrev;3D_H;RBF SVM;0.933;0.844;0.844;0.685;0.84
+data;5HT2c;3D_noH;RBF SVM;0.933;0.853;0.882;0.729;0.939
+data;5HT6;3D_H;RBF SVM;0.933;0.838;0.919;0.637;0.942
+pca_100;kappa;3D_H;Linear SVM;0.933;0.863;0.847;0.663;0.829
+data;HIVrev;Ext;RBF SVM;0.933;0.863;0.866;0.726;0.84
+pca_100;NOP;3D_H;LogisticRegression;0.933;0.851;0.845;0.696;0.889
+data;NOP;Ext;RBF SVM;0.933;0.886;0.876;0.763;0.944
+data;NOP;Ext;Linear SVM;0.933;0.881;0.868;0.757;0.963
+data;HIVprot;KRFP;Linear SVM;0.933;0.873;0.889;0.697;0.902
+data;5HT2c;Ext;RBF SVM;0.933;0.852;0.867;0.708;0.905
+data;catB;KRFP;Linear SVM;0.933;0.879;0.879;0.758;0.895
+data;HIVprot;Ext;RBF SVM;0.933;0.876;0.917;0.75;0.946
+data;HIVint;Ext;RBF SVM;0.933;0.932;0.97;0.873;0.879
+data;5HT6;PubCh;RBF SVM;0.933;0.838;0.94;0.694;0.97
+data;5HT6;Substr;RBF SVM;0.933;0.868;0.92;0.661;0.936
+data;HIVrev;3D_H;RBF SVM;0.933;0.84;0.841;0.68;0.833
+data;HIVprot;Ext;LogisticRegression;0.933;0.862;0.89;0.69;0.911
+pca_0.9;5HT2c;3D_H;RBF SVM;0.932;0.837;0.862;0.687;0.914
+pca_0.9;NOP;3D_H;LogisticRegression;0.932;0.851;0.845;0.694;0.889
+data;HIVrev;3D_H;Linear SVM;0.932;0.831;0.831;0.659;0.833
+data;5HT2A;GraphOnly;RBF SVM;0.932;0.869;0.883;0.696;0.894
+data;D2;FP;LogisticRegression;0.932;0.865;0.869;0.717;0.878
+data;NOP;GraphOnly;LogisticRegression;0.932;0.866;0.868;0.734;0.852
+pca_100;catB;3D_H;RBF SVM;0.931;0.838;0.839;0.68;0.819
+pca_100;mi;3D_H;LogisticRegression;0.931;0.848;0.849;0.657;0.851
+data;HIVrev;FP;LogisticRegression;0.931;0.866;0.868;0.732;0.846
+data;NOP;3D_noH;RBF SVM;0.931;0.807;0.791;0.61;0.907
+pca_100;5HT2A;3D_H;RBF SVM;0.931;0.859;0.84;0.636;0.823
+pca_0.9;HIVrev;3D_H;RBF SVM;0.931;0.831;0.836;0.667;0.796
+data;5HT2A;KRFP;LogisticRegression;0.931;0.858;0.874;0.673;0.888
+data;HIVprot;Ext;Linear SVM;0.931;0.862;0.897;0.7;0.922
+data;HIVprot;FP;Linear SVM;0.931;0.87;0.903;0.718;0.926
+data;catB;GraphOnly;LogisticRegression;0.93;0.87;0.87;0.742;0.86
+data;NOP;PubCh;RBF SVM;0.93;0.876;0.868;0.75;0.926
+data;5HT6;3D_H;LogisticRegression;0.93;0.833;0.931;0.66;0.959
+data;mi;Ext;Linear SVM;0.93;0.873;0.893;0.738;0.918
+data;HIVprot;3D_H;supervised_AE;0.929;0.899;0.899;0.8;0.871
+pca_0.9;catB;3D_H;RBF SVM;0.929;0.847;0.847;0.695;0.836
+data;HIVprot;PubCh;Linear SVM;0.929;0.842;0.874;0.646;0.896
+data;HIVprot;3D_H;sAE_SoftMax;0.928;0.903;0.903;0.806;0.906
+data;NOP;3D_H;RBF SVM;0.928;0.847;0.853;0.71;0.815
+data;NOP;2D_noH;Linear SVM;0.928;0.856;0.848;0.707;0.912
+pca_100;mi;3D_H;Linear SVM;0.928;0.86;0.859;0.68;0.857
+pca_0.9;5HT6;3D_H;RBF SVM;0.928;0.854;0.907;0.617;0.922
+data;NOP;2D_noH;RBF SVM;0.928;0.889;0.886;0.776;0.912
+pca_0.9;5HT2A;3D_H;Linear SVM;0.928;0.856;0.85;0.642;0.845
+data;NOP;2D_H;Linear SVM;0.928;0.856;0.848;0.707;0.912
+data;HIVint;Ext;LogisticRegression;0.928;0.929;0.965;0.859;0.879
+data;NOP;2D_H;RBF SVM;0.928;0.889;0.886;0.776;0.912
+data;5HT2A;Ext;Linear SVM;0.927;0.855;0.87;0.665;0.883
+data;NOP;MACCS;RBF SVM;0.927;0.843;0.829;0.683;0.926
+data;5HT2c;3D_noH;LogisticRegression;0.927;0.844;0.866;0.696;0.91
+pca_0.9;5HT6;3D_H;LogisticRegression;0.927;0.835;0.913;0.611;0.936
+pca_100;5HT2A;3D_H;LogisticRegression;0.927;0.84;0.828;0.604;0.818
+data;5HT2A;FP;Linear SVM;0.927;0.867;0.879;0.688;0.889
+data;D2;3D_H;supervised_AE;0.926;0.876;0.876;0.757;0.829
+pca_100;NOP;3D_H;Linear SVM;0.926;0.864;0.86;0.726;0.889
+data;D2;FP;Linear SVM;0.926;0.863;0.86;0.706;0.855
+data;5HT6;GraphOnly;Linear SVM;0.926;0.851;0.922;0.647;0.942
+data;5HT2A;KRFP;Linear SVM;0.926;0.876;0.882;0.7;0.886
+pca_100;HIVrev;3D_H;LogisticRegression;0.926;0.814;0.812;0.627;0.827
+data;5HT2c;KRFP;RBF SVM;0.926;0.851;0.863;0.702;0.892
+data;kappa;GraphOnly;RBF SVM;0.926;0.862;0.887;0.712;0.914
+data;mi;PubCh;Linear SVM;0.926;0.868;0.884;0.72;0.903
+data;5HT2A;GraphOnly;LogisticRegression;0.926;0.851;0.875;0.669;0.896
+data;catB;MACCS;RBF SVM;0.926;0.865;0.864;0.73;0.871
+data;5HT2A;FP;LogisticRegression;0.926;0.843;0.858;0.637;0.87
+pca_100;HIVprot;3D_H;LogisticRegression;0.926;0.85;0.854;0.63;0.857
+data;NMDA;KRFP;LogisticRegression;0.925;0.833;0.855;0.516;0.861
+data;5HT2A;Ext;LogisticRegression;0.925;0.863;0.864;0.665;0.865
+data;5HT2c;3D_H;Linear SVM;0.925;0.834;0.857;0.679;0.908
+pca_0.9;5HT6;3D_H;Linear SVM;0.925;0.84;0.892;0.574;0.907
+pca_0.9;5HT2c;3D_H;LogisticRegression;0.924;0.835;0.853;0.673;0.892
+data;mi;GraphOnly;RBF SVM;0.924;0.848;0.877;0.694;0.913
+data;catB;PubCh;RBF SVM;0.924;0.844;0.845;0.69;0.836
+data;HIVint;Ext;Linear SVM;0.924;0.937;0.978;0.909;0.879
+data;D2;KRFP;LogisticRegression;0.924;0.849;0.857;0.689;0.875
+data;catB;GraphOnly;RBF SVM;0.924;0.869;0.87;0.741;0.848
+data;HIVrev;3D_noH;LogisticRegression;0.924;0.827;0.823;0.649;0.858
+pca_100;5HT2A;3D_H;Linear SVM;0.924;0.835;0.823;0.594;0.814
+pca_0.9;NOP;3D_H;RBF SVM;0.924;0.844;0.837;0.682;0.889
+data;HIVrev;KRFP;RBF SVM;0.924;0.841;0.839;0.677;0.858
+data;D2;3D_H;sAE_SoftMax;0.924;0.879;0.879;0.76;0.836
+pca_0.9;NOP;3D_H;Linear SVM;0.923;0.846;0.845;0.688;0.852
+data;5HT2A;GraphOnly;Linear SVM;0.923;0.858;0.874;0.675;0.888
+pca_0.9;catL;3D_H;Linear SVM;0.923;0.848;0.861;0.666;0.819
+data;5HT2c;FP;LogisticRegression;0.923;0.84;0.838;0.663;0.835
+data;catB;PubCh;LogisticRegression;0.923;0.848;0.847;0.695;0.854
+data;NOP;3D_H;Linear SVM;0.923;0.888;0.876;0.77;0.963
+data;NOP;GraphOnly;Linear SVM;0.922;0.864;0.86;0.723;0.889
+pca_0.9;catB;3D_H;LogisticRegression;0.922;0.835;0.836;0.674;0.807
+data;NOP;3D_noH;Linear SVM;0.922;0.871;0.868;0.735;0.889
+data;HIVrev;PubCh;RBF SVM;0.922;0.837;0.839;0.673;0.827
+pca_0.9;HIVrev;3D_H;LogisticRegression;0.922;0.826;0.828;0.652;0.815
+data;mi;Substr;RBF SVM;0.922;0.868;0.865;0.694;0.86
+data;5HT2c;PubCh;RBF SVM;0.922;0.846;0.853;0.684;0.87
+data;5HT2c;3D_noH;Linear SVM;0.922;0.841;0.872;0.705;0.933
+pca_100;NOP;3D_H;RBF SVM;0.922;0.864;0.86;0.722;0.889
+data;catL;MACCS;RBF SVM;0.922;0.878;0.886;0.726;0.861
+data;HIVprot;GraphOnly;RBF SVM;0.922;0.864;0.897;0.703;0.922
+data;HIVrev;2D_H;LogisticRegression;0.921;0.845;0.843;0.684;0.858
+data;HIVprot;MACCS;RBF SVM;0.921;0.848;0.882;0.666;0.907
+data;HIVrev;2D_noH;LogisticRegression;0.921;0.845;0.843;0.684;0.858
+data;NOP;GraphOnly;RBF SVM;0.921;0.86;0.853;0.713;0.907
+data;HIVrev;Ext;Linear SVM;0.921;0.852;0.849;0.7;0.87
+data;NOP;MACCS;LogisticRegression;0.921;0.874;0.868;0.748;0.907
+data;D2;Ext;LogisticRegression;0.92;0.843;0.845;0.67;0.849
+data;catB;FP;Linear SVM;0.92;0.847;0.847;0.695;0.825
+data;HIVprot;GraphOnly;LogisticRegression;0.92;0.844;0.881;0.658;0.907
+data;HIVrev;2D_H;RBF SVM;0.92;0.838;0.837;0.673;0.846
+data;HIVrev;2D_noH;RBF SVM;0.92;0.838;0.837;0.673;0.846
+data;NMDA;PubCh;Linear SVM;0.92;0.844;0.83;0.501;0.826
+data;kappa;PubCh;LogisticRegression;0.92;0.851;0.854;0.657;0.857
+data;5HT6;3D_H;Linear SVM;0.919;0.836;0.926;0.653;0.953
+pca_100;5HT2c;3D_H;RBF SVM;0.919;0.81;0.839;0.634;0.898
+data;NMDA;PubCh;LogisticRegression;0.919;0.866;0.849;0.543;0.844
+data;HIVrev;GraphOnly;LogisticRegression;0.919;0.836;0.836;0.67;0.84
+data;D2;GraphOnly;RBF SVM;0.918;0.835;0.846;0.663;0.871
+data;D2;MACCS;RBF SVM;0.918;0.856;0.862;0.703;0.875
+data;catL;PubCh;LogisticRegression;0.918;0.85;0.864;0.671;0.819
+data;NMDA;KRFP;RBF SVM;0.918;0.769;0.914;0.554;0.955
+data;HIVprot;Substr;RBF SVM;0.918;0.861;0.885;0.679;0.903
+data;HIVrev;FP;Linear SVM;0.918;0.848;0.849;0.696;0.84
+data;HIVrev;KRFP;LogisticRegression;0.917;0.825;0.825;0.648;0.827
+pca_100;5HT6;3D_H;Linear SVM;0.917;0.838;0.877;0.55;0.888
+data;HIVrev;3D_noH;Linear SVM;0.917;0.817;0.815;0.63;0.833
+pca_100;HIVprot;3D_H;Linear SVM;0.916;0.841;0.844;0.607;0.846
+pca_100;catL;3D_H;LogisticRegression;0.916;0.833;0.839;0.623;0.819
+data;D2;KRFP;Linear SVM;0.916;0.836;0.849;0.667;0.878
+data;catB;PubCh;Linear SVM;0.916;0.851;0.85;0.701;0.86
+pca_100;HIVrev;3D_H;Linear SVM;0.916;0.83;0.831;0.659;0.821
+data;D2;Ext;Linear SVM;0.916;0.858;0.853;0.693;0.841
+pca_100;5HT6;3D_H;LogisticRegression;0.916;0.828;0.871;0.529;0.883
+data;HIVint;Substr;RBF SVM;0.916;0.859;0.909;0.663;0.788
+data;5HT2c;GraphOnly;RBF SVM;0.915;0.825;0.832;0.641;0.851
+data;kappa;Substr;RBF SVM;0.915;0.845;0.875;0.68;0.908
+data;HIVrev;3D_noH;RBF SVM;0.915;0.821;0.82;0.639;0.827
+data;5HT2c;FP;Linear SVM;0.915;0.834;0.836;0.655;0.841
+data;catB;GraphOnly;Linear SVM;0.915;0.841;0.842;0.687;0.825
+data;NOP;MACCS;Linear SVM;0.915;0.852;0.837;0.703;0.944
+data;HIVrev;GraphOnly;RBF SVM;0.915;0.826;0.828;0.652;0.809
+pca_0.9;5HT2c;3D_H;Linear SVM;0.914;0.857;0.872;0.714;0.905
+pca_100;NMDA;3D_H;RBF SVM;0.913;0.832;0.83;0.487;0.83
+data;catL;PubCh;Linear SVM;0.913;0.861;0.868;0.686;0.847
+data;5HT2c;KRFP;LogisticRegression;0.912;0.839;0.845;0.669;0.857
+data;kappa;PubCh;Linear SVM;0.912;0.842;0.847;0.64;0.851
+data;D2;PubCh;LogisticRegression;0.912;0.843;0.848;0.673;0.858
+data;catB;3D_H;supervised_AE;0.911;0.874;0.874;0.759;0.798
+data;NMDA;PubCh;RBF SVM;0.911;0.859;0.836;0.525;0.83
+pca_0.9;HIVrev;3D_H;Linear SVM;0.911;0.826;0.828;0.652;0.815
+data;5HT2c;KRFP;Linear SVM;0.911;0.836;0.838;0.659;0.844
+data;5HT6;PubCh;LogisticRegression;0.911;0.863;0.911;0.632;0.926
+data;HIVrev;GraphOnly;Linear SVM;0.91;0.834;0.833;0.665;0.84
+data;HIVrev;2D_noH;Linear SVM;0.91;0.817;0.819;0.633;0.802
+data;HIVint;MACCS;Linear SVM;0.91;0.851;0.874;0.593;0.818
+data;HIVrev;2D_H;Linear SVM;0.91;0.817;0.819;0.633;0.802
+pca_0.9;catB;3D_H;Linear SVM;0.91;0.836;0.836;0.675;0.825
+pca_100;catB;3D_H;LogisticRegression;0.909;0.805;0.805;0.612;0.795
+data;NMDA;3D_H;LogisticRegression;0.909;0.773;0.92;0.576;0.962
+data;HIVprot;GraphOnly;Linear SVM;0.909;0.829;0.867;0.625;0.895
+data;D2;PubCh;Linear SVM;0.908;0.839;0.844;0.666;0.855
+pca_0.9;NMDA;3D_H;RBF SVM;0.908;0.849;0.861;0.538;0.865
+data;5HT2A;PubCh;LogisticRegression;0.908;0.832;0.849;0.615;0.863
+data;5HT2A;Substr;RBF SVM;0.907;0.841;0.869;0.65;0.893
+data;catB;Substr;RBF SVM;0.906;0.831;0.831;0.661;0.83
+data;HIVint;MACCS;LogisticRegression;0.906;0.838;0.874;0.585;0.788
+data;HIVrev;MACCS;RBF SVM;0.906;0.831;0.836;0.666;0.796
+data;HIVrev;PubCh;LogisticRegression;0.904;0.818;0.817;0.633;0.827
+pca_0.9;NMDA;3D_H;LogisticRegression;0.904;0.833;0.833;0.493;0.833
+data;5HT2A;PubCh;Linear SVM;0.904;0.84;0.85;0.625;0.858
+data;NMDA;3D_H;Linear SVM;0.903;0.762;0.923;0.578;0.969
+data;5HT6;PubCh;Linear SVM;0.903;0.835;0.925;0.643;0.951
+data;NOP;3D_H;supervised_AE;0.902;0.753;0.753;0.51;0.56
+data;NMDA;KRFP;Linear SVM;0.902;0.873;0.818;0.522;0.802
+data;NMDA;3D_H;RBF SVM;0.902;0.833;0.877;0.542;0.889
+data;mi;3D_H;AE + RBF SVM;0.901;0.844;0.835;0.639;0.824
+data;HIVrev;KRFP;Linear SVM;0.901;0.825;0.823;0.645;0.84
+data;5HT6;MACCS;LogisticRegression;0.901;0.868;0.88;0.587;0.883
+data;5HT2c;Ext;Linear SVM;0.9;0.832;0.838;0.655;0.854
+pca_100;catL;3D_H;Linear SVM;0.9;0.83;0.835;0.616;0.819
+data;5HT2c;PubCh;LogisticRegression;0.899;0.823;0.822;0.629;0.819
+data;NMDA;2D_noH;RBF SVM;0.899;0.836;0.848;0.509;0.851
+data;NMDA;2D_H;RBF SVM;0.899;0.836;0.848;0.509;0.851
+data;5HT2c;Ext;LogisticRegression;0.898;0.832;0.834;0.65;0.841
+data;D2;GraphOnly;LogisticRegression;0.898;0.83;0.827;0.639;0.82
+data;5HT2c;GraphOnly;LogisticRegression;0.898;0.798;0.806;0.586;0.825
+pca_100;D2;3D_H;LogisticRegression;0.898;0.822;0.813;0.618;0.793
+data;5HT2c;MACCS;RBF SVM;0.898;0.813;0.814;0.611;0.816
+pca_100;catB;3D_H;Linear SVM;0.897;0.816;0.816;0.634;0.795
+data;NMDA;2D_H;LogisticRegression;0.897;0.866;0.862;0.558;0.861
+data;mi;GraphOnly;LogisticRegression;0.897;0.832;0.853;0.648;0.878
+data;NOP;Substr;RBF SVM;0.897;0.801;0.798;0.6;0.815
+data;NMDA;2D_noH;LogisticRegression;0.897;0.866;0.862;0.558;0.861
+data;5HT2c;3D_H;supervised_AE;0.896;0.844;0.844;0.695;0.898
+data;HIVprot;MACCS;LogisticRegression;0.896;0.817;0.836;0.574;0.85
+data;5HT6;MACCS;Linear SVM;0.896;0.862;0.869;0.571;0.871
+data;5HT2A;MACCS;Linear SVM;0.896;0.828;0.828;0.59;0.828
+data;5HT2A;MACCS;LogisticRegression;0.895;0.827;0.83;0.59;0.832
+data;5HT2c;GraphOnly;Linear SVM;0.894;0.8;0.806;0.589;0.819
+data;kappa;GraphOnly;Linear SVM;0.894;0.821;0.842;0.614;0.865
+data;HIVrev;3D_H;supervised_AE;0.894;0.852;0.852;0.707;0.848
+data;NOP;3D_H;sAE_SoftMax;0.894;0.88;0.88;0.767;0.853
+data;5HT2c;PubCh;Linear SVM;0.893;0.814;0.82;0.617;0.835
+pca_100;D2;3D_H;Linear SVM;0.893;0.823;0.808;0.617;0.776
+data;HIVrev;PubCh;Linear SVM;0.892;0.812;0.812;0.622;0.815
+data;HIVint;Substr;LogisticRegression;0.892;0.838;0.874;0.583;0.788
+data;catB;3D_H;sAE_SoftMax;0.891;0.85;0.85;0.706;0.787
+data;kappa;GraphOnly;LogisticRegression;0.891;0.824;0.833;0.608;0.843
+data;NMDA;Ext;RBF SVM;0.891;0.769;0.87;0.465;0.899
+data;5HT2c;3D_H;sAE_SoftMax;0.89;0.844;0.844;0.691;0.841
+pca_100;5HT2c;3D_H;LogisticRegression;0.89;0.783;0.799;0.559;0.832
+data;mi;MACCS;LogisticRegression;0.89;0.801;0.803;0.563;0.806
+data;HIVrev;Substr;RBF SVM;0.89;0.814;0.815;0.625;0.809
+data;NMDA;2D_H;Linear SVM;0.889;0.786;0.859;0.472;0.88
+data;NMDA;2D_noH;Linear SVM;0.889;0.786;0.859;0.472;0.88
+data;D2;Substr;RBF SVM;0.888;0.806;0.809;0.596;0.816
+data;HIVint;Substr;Linear SVM;0.888;0.821;0.866;0.56;0.758
+data;HIVprot;MACCS;Linear SVM;0.888;0.815;0.838;0.574;0.855
+data;HIVrev;3D_H;sAE_SoftMax;0.887;0.845;0.845;0.694;0.814
+data;5HT2c;Substr;RBF SVM;0.886;0.806;0.81;0.599;0.819
+data;D2;GraphOnly;Linear SVM;0.886;0.819;0.81;0.612;0.792
+data;catB;Est;RBF SVM;0.885;0.802;0.802;0.605;0.789
+data;NMDA;FP;RBF SVM;0.885;0.743;0.889;0.462;0.931
+data;mi;MACCS;Linear SVM;0.885;0.807;0.803;0.571;0.798
+data;NMDA;MACCS;RBF SVM;0.884;0.802;0.821;0.445;0.826
+data;HIVrev;Est;RBF SVM;0.884;0.823;0.825;0.647;0.809
+data;NMDA;FP;LogisticRegression;0.883;0.773;0.877;0.474;0.906
+data;NMDA;GraphOnly;RBF SVM;0.883;0.823;0.815;0.466;0.812
+data;HIVrev;MACCS;LogisticRegression;0.882;0.796;0.796;0.589;0.802
+data;catL;Substr;RBF SVM;0.882;0.812;0.835;0.601;0.764
+data;mi;GraphOnly;Linear SVM;0.881;0.833;0.845;0.637;0.859
+data;mi;Substr;LogisticRegression;0.88;0.806;0.797;0.564;0.787
+data;NOP;Substr;LogisticRegression;0.88;0.817;0.814;0.631;0.833
+data;catL;Est;RBF SVM;0.879;0.8;0.824;0.576;0.75
+data;NOP;Substr;Linear SVM;0.879;0.803;0.798;0.609;0.833
+data;5HT6;Est;RBF SVM;0.879;0.794;0.841;0.458;0.854
+pca_100;NMDA;3D_H;LogisticRegression;0.878;0.806;0.806;0.438;0.806
+data;HIVrev;Substr;LogisticRegression;0.878;0.809;0.804;0.615;0.846
+data;NMDA;FP;Linear SVM;0.878;0.797;0.833;0.453;0.844
+pca_0.9;NMDA;3D_H;Linear SVM;0.877;0.837;0.84;0.501;0.84
+data;HIVint;Est;RBF SVM;0.876;0.806;0.861;0.534;0.727
+data;NMDA;GraphOnly;LogisticRegression;0.876;0.778;0.821;0.423;0.833
+data;5HT2A;Est;RBF SVM;0.875;0.81;0.84;0.583;0.865
+data;NMDA;MACCS;LogisticRegression;0.875;0.799;0.815;0.436;0.819
+data;HIVprot;Substr;LogisticRegression;0.874;0.797;0.802;0.52;0.805
+pca_100;5HT2c;3D_H;Linear SVM;0.874;0.785;0.803;0.565;0.841
+data;mi;3D_H;AE + LogisticRegression;0.873;0.773;0.752;0.495;0.726
+data;HIVrev;MACCS;Linear SVM;0.872;0.798;0.793;0.59;0.833
+data;5HT6;Substr;Linear SVM;0.872;0.781;0.839;0.443;0.856
+data;mi;Substr;Linear SVM;0.872;0.815;0.794;0.574;0.767
+data;NMDA;GraphOnly;Linear SVM;0.871;0.807;0.744;0.411;0.726
+data;HIVint;Est;LogisticRegression;0.871;0.765;0.814;0.434;0.697
+data;catL;MACCS;LogisticRegression;0.871;0.796;0.799;0.549;0.792
+data;catB;MACCS;LogisticRegression;0.869;0.792;0.791;0.585;0.83
+data;mi;Est;RBF SVM;0.868;0.802;0.826;0.584;0.856
+data;NMDA;MACCS;Linear SVM;0.867;0.812;0.818;0.456;0.819
+data;HIVint;Est;Linear SVM;0.867;0.803;0.879;0.562;0.697
+data;5HT6;Substr;LogisticRegression;0.867;0.778;0.844;0.443;0.863
+data;catB;MACCS;Linear SVM;0.866;0.789;0.788;0.578;0.813
+data;HIVrev;Substr;Linear SVM;0.865;0.811;0.804;0.618;0.864
+data;NMDA;Est;RBF SVM;0.862;0.762;0.836;0.415;0.858
+data;kappa;Substr;LogisticRegression;0.862;0.744;0.749;0.444;0.753
+data;HIVprot;3D_H;AE + RBF SVM;0.861;0.816;0.832;0.568;0.843
+data;HIVprot;Substr;Linear SVM;0.859;0.783;0.797;0.499;0.806
+data;kappa;Substr;Linear SVM;0.859;0.759;0.775;0.479;0.793
+data;HIVprot;3D_H;AE + LogisticRegression;0.859;0.795;0.805;0.519;0.813
+pca_100;NMDA;3D_H;Linear SVM;0.859;0.799;0.793;0.422;0.792
+data;5HT2c;MACCS;LogisticRegression;0.858;0.794;0.796;0.572;0.8
+data;NMDA;Ext;Linear SVM;0.857;0.786;0.836;0.445;0.851
+data;NMDA;Ext;LogisticRegression;0.857;0.79;0.843;0.454;0.858
+data;5HT2c;MACCS;Linear SVM;0.857;0.798;0.798;0.579;0.797
+data;catL;MACCS;Linear SVM;0.857;0.776;0.788;0.512;0.75
+data;NOP;Est;RBF SVM;0.854;0.778;0.775;0.562;0.796
+data;NMDA;Substr;RBF SVM;0.853;0.781;0.784;0.395;0.785
+data;kappa;MACCS;Linear SVM;0.851;0.798;0.792;0.543;0.785
+data;5HT2c;Est;RBF SVM;0.851;0.778;0.777;0.54;0.775
+data;NMDA;3D_noH;RBF SVM;0.849;0.626;0.9;0.352;0.974
+data;kappa;MACCS;LogisticRegression;0.848;0.774;0.781;0.503;0.789
+data;HIVprot;Est;RBF SVM;0.847;0.748;0.786;0.446;0.813
+data;HIVprot;3D_H;AE + Linear SVM;0.845;0.77;0.803;0.487;0.827
+data;NOP;3D_H;AE + LogisticRegression;0.843;0.738;0.767;0.534;0.556
+data;5HT6;Est;LogisticRegression;0.843;0.756;0.824;0.398;0.844
+data;NMDA;3D_noH;LogisticRegression;0.843;0.748;0.855;0.417;0.884
+data;mi;3D_H;AE + Linear SVM;0.839;0.763;0.715;0.472;0.655
+data;kappa;Est;RBF SVM;0.836;0.724;0.768;0.428;0.815
+data;NOP;Est;Linear SVM;0.829;0.761;0.752;0.516;0.815
+data;D2;Est;RBF SVM;0.828;0.765;0.77;0.514;0.779
+data;NMDA;3D_noH;Linear SVM;0.828;0.733;0.873;0.421;0.911
+data;5HT6;Est;Linear SVM;0.827;0.736;0.841;0.387;0.871
+data;NOP;Est;LogisticRegression;0.826;0.758;0.752;0.513;0.796
+data;5HT2c;Substr;LogisticRegression;0.825;0.76;0.765;0.507;0.778
+data;HIVrev;Est;LogisticRegression;0.821;0.75;0.75;0.497;0.747
+data;HIVrev;Est;Linear SVM;0.82;0.758;0.755;0.512;0.778
+data;D2;MACCS;LogisticRegression;0.817;0.752;0.75;0.486;0.744
+data;D2;MACCS;Linear SVM;0.816;0.76;0.756;0.501;0.749
+data;D2;Substr;LogisticRegression;0.815;0.745;0.751;0.476;0.763
+data;5HT2c;Substr;Linear SVM;0.812;0.751;0.765;0.495;0.8
+data;NMDA;Substr;LogisticRegression;0.812;0.714;0.707;0.283;0.705
+data;NMDA;Substr;Linear SVM;0.808;0.75;0.772;0.35;0.778
+data;5HT2A;Substr;LogisticRegression;0.807;0.727;0.744;0.401;0.759
+data;NPC1;3D_noH;RBF SVM;0.803;0.662;0.987;0.251;0.333
+data;D2;Substr;Linear SVM;0.803;0.737;0.74;0.458;0.747
+data;mi;Est;Linear SVM;0.801;0.747;0.76;0.461;0.777
+data;catB;Substr;Linear SVM;0.8;0.74;0.74;0.48;0.731
+data;catB;Substr;LogisticRegression;0.799;0.729;0.729;0.458;0.725
+data;5HT2A;Substr;Linear SVM;0.799;0.736;0.738;0.412;0.739
+data;catL;Substr;Linear SVM;0.798;0.736;0.729;0.427;0.75
+data;mi;Est;LogisticRegression;0.798;0.743;0.75;0.449;0.759
+data;delta;3D_H;AE + LogisticRegression;0.794;0.719;0.699;0.421;0.65
+data;kappa;3D_H;AE + LogisticRegression;0.794;0.724;0.674;0.393;0.62
+data;catL;Substr;LogisticRegression;0.791;0.732;0.736;0.422;0.722
+data;HIVprot;Est;LogisticRegression;0.785;0.697;0.699;0.33;0.701
+data;kappa;Est;Linear SVM;0.781;0.687;0.719;0.344;0.753
+data;kappa;Est;LogisticRegression;0.781;0.716;0.737;0.396;0.759
+data;HIVprot;Est;Linear SVM;0.779;0.712;0.737;0.367;0.754
+data;NPC1;3D_H;RBF SVM;0.778;0.575;0.993;0.253;0.152
+data;NPC1;2D_H;RBF SVM;0.771;0.632;0.987;0.217;0.273
+data;NPC1;2D_noH;RBF SVM;0.771;0.632;0.987;0.217;0.273
+pca_0.9;NPC1;3D_H;RBF SVM;0.764;0.575;0.993;0.248;0.152
+data;delta;3D_H;AE + Linear SVM;0.763;0.5;0.353;0.0;0.0
+data;catB;Est;Linear SVM;0.762;0.738;0.737;0.476;0.754
+data;5HT2c;Est;LogisticRegression;0.761;0.704;0.712;0.398;0.73
+data;NPC1;3D_H;sAE_SoftMax;0.761;0.761;0.761;0.586;0.532
+data;NPC1;3D_H;supervised_AE;0.761;0.761;0.761;0.586;0.532
+data;catB;Est;LogisticRegression;0.756;0.687;0.689;0.379;0.614
+data;5HT2c;Est;Linear SVM;0.755;0.695;0.71;0.383;0.746
+pca_100;NPC1;3D_H;RBF SVM;0.752;0.604;0.99;0.221;0.212
+data;catL;3D_H;AE + LogisticRegression;0.749;0.675;0.692;0.322;0.639
+data;NMDA;Est;LogisticRegression;0.747;0.663;0.639;0.21;0.632
+data;catL;Est;LogisticRegression;0.744;0.65;0.623;0.265;0.708
+data;catL;Est;Linear SVM;0.741;0.659;0.615;0.28;0.75
+data;HIVrev;3D_H;AE + LogisticRegression;0.741;0.666;0.677;0.338;0.58
+data;5HT2A;3D_H;AE + RBF SVM;0.739;0.699;0.569;0.347;0.459
+data;5HT2A;3D_H;AE + LogisticRegression;0.738;0.702;0.595;0.346;0.505
+pca_100;NPC1;3D_H;LogisticRegression;0.737;0.677;0.806;0.073;0.545
+data;NPC1;3D_H;Linear SVM;0.736;0.588;0.988;0.161;0.182
+data;NPC1;3D_H;LogisticRegression;0.734;0.668;0.968;0.161;0.364
+data;5HT2A;Est;Linear SVM;0.732;0.66;0.656;0.273;0.653
+data;5HT2A;Est;LogisticRegression;0.731;0.667;0.67;0.287;0.673
+data;NMDA;Est;Linear SVM;0.728;0.63;0.537;0.167;0.51
+data;NOP;3D_H;AE + RBF SVM;0.725;0.66;0.643;0.318;0.759
+data;5HT2A;3D_H;AE + Linear SVM;0.723;0.685;0.542;0.33;0.421
+pca_0.9;NPC1;3D_H;LogisticRegression;0.722;0.691;0.955;0.153;0.424
+pca_0.9;NPC1;3D_H;Linear SVM;0.722;0.617;0.986;0.192;0.242
+data;NPC1;3D_noH;LogisticRegression;0.722;0.685;0.966;0.162;0.4
+pca_100;NPC1;3D_H;Linear SVM;0.721;0.649;0.842;0.067;0.455
+data;NPC1;3D_noH;Linear SVM;0.721;0.597;0.989;0.179;0.2
+data;NPC1;3D_H;AE + RBF SVM;0.719;0.658;0.889;0.085;0.424
+data;kappa;3D_H;AE + Linear SVM;0.696;0.583;0.482;0.146;0.373
+data;kappa;3D_H;AE + RBF SVM;0.693;0.64;0.641;0.249;0.643
+data;D2;Est;LogisticRegression;0.689;0.626;0.628;0.241;0.632
+data;D2;Est;Linear SVM;0.685;0.623;0.614;0.234;0.593
+data;NPC1;3D_H;AE + LogisticRegression;0.681;0.664;0.871;0.08;0.455
+data;NPC1;2D_noH;LogisticRegression;0.68;0.652;0.966;0.14;0.333
+data;NPC1;2D_H;LogisticRegression;0.68;0.652;0.966;0.14;0.333
+data;NPC1;2D_noH;Linear SVM;0.675;0.645;0.983;0.197;0.303
+data;NPC1;2D_H;Linear SVM;0.675;0.645;0.983;0.197;0.303
+data;delta;3D_H;AE + RBF SVM;0.669;0.618;0.624;0.227;0.638
+data;NOP;3D_H;AE + Linear SVM;0.659;0.58;0.62;0.192;0.333
+data;HIVrev;3D_H;AE + RBF SVM;0.654;0.609;0.626;0.224;0.475
+data;catL;3D_H;AE + RBF SVM;0.636;0.601;0.623;0.182;0.556
+data;D2;3D_H;AE + RBF SVM;0.619;0.604;0.644;0.208;0.731
+data;HIVrev;3D_H;AE + Linear SVM;0.601;0.554;0.581;0.106;0.346
+data;D2;3D_H;AE + Linear SVM;0.599;0.533;0.466;0.07;0.318
+data;D2;3D_H;AE + LogisticRegression;0.599;0.552;0.519;0.1;0.448
+data;catL;3D_H;AE + Linear SVM;0.597;0.5;0.264;0.0;1.0
+data;NPC1;3D_H;AE + Linear SVM;0.582;0.667;0.967;0.181;0.364
+data;5HT2c;3D_H;AE + Linear SVM;0.5;0.5;0.66;0.0;1.0
+data;HIVint;3D_H;AE + RBF SVM;0.5;0.5;0.857;0.0;0.0
+data;5HT2c;3D_H;AE + LogisticRegression;0.5;0.5;0.34;0.0;0.0
+data;5HT2c;3D_H;AE + RBF SVM;0.5;0.5;0.66;0.0;1.0
+data;5HT6;3D_H;AE + RBF SVM;0.5;0.5;0.887;0.0;1.0
+data;5HT6;3D_H;AE + LogisticRegression;0.5;0.5;0.113;0.0;0.0
+data;catB;3D_H;AE + Linear SVM;0.5;0.5;0.483;0.0;1.0
+data;HIVint;3D_H;AE + Linear SVM;0.5;0.5;0.857;0.0;0.0
+data;NMDA;3D_H;AE + Linear SVM;0.5;0.5;0.111;0.0;0.0
+data;NMDA;3D_H;AE + RBF SVM;0.5;0.5;0.111;0.0;0.0
+data;NMDA;3D_H;AE + LogisticRegression;0.5;0.5;0.111;0.0;0.0
+data;catB;3D_H;AE + LogisticRegression;0.5;0.5;0.517;0.0;0.0
+data;catB;3D_H;AE + RBF SVM;0.5;0.5;0.483;0.0;1.0
+data;HIVint;3D_H;AE + LogisticRegression;0.5;0.5;0.857;0.0;0.0
+data;5HT6;3D_H;AE + Linear SVM;0.5;0.5;0.887;0.0;1.0
+data;NPC1;Est;LogisticRegression;0.094;0.167;0.167;-0.684;0.061
+data;NPC1;Substr;LogisticRegression;0.04;0.136;0.136;-0.741;0.152
+data;NPC1;MACCS;LogisticRegression;0.037;0.106;0.106;-0.797;0.091
+data;NPC1;KRFP;LogisticRegression;0.018;0.045;0.045;-0.915;0.0
+data;NPC1;PubCh;LogisticRegression;0.012;0.076;0.076;-0.852;0.061
+data;NPC1;GraphOnly;LogisticRegression;0.01;0.045;0.045;-0.915;0.0
+data;NPC1;Ext;LogisticRegression;0.007;0.045;0.045;-0.915;0.0
+data;NPC1;FP;LogisticRegression;0.007;0.045;0.045;-0.915;0.0

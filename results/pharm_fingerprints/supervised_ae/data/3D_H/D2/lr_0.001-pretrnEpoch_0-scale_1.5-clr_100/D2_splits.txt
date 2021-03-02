@@ -1,0 +1,4 @@
+idx;params;roc_auc;acc;mcc;bal;recall;max_roc_auc;max_acc;max_mcc;max_bal;max_recall;pre-fit_time;pre-score_time;fit_time;score_time
+0;pretrain_epochs:0,dims_layers_ae:[10619, 7000, 4000, 500, 1000, 100],dims_layers_classifier:[100],batch_size:50,lr:0.001use_dropout:True,procedure:['training_all'],scale_loss:1.5,earlyStopping:10;0.5;0.5;0.0;0.5;0.0;0.5;0.5;0.0;0.5;0.0;0;0;11.223111629486084;0.03827758630116781
+1;pretrain_epochs:0,dims_layers_ae:[10619, 7000, 4000, 500, 1000, 100],dims_layers_classifier:[100],batch_size:50,lr:0.001use_dropout:True,procedure:['training_all'],scale_loss:1.5,earlyStopping:10;0.5;0.5;0.0;0.5;0.0;0.5;0.5;0.0;0.5;0.0;0;0;14.54831838607788;0.039206743240356445
+2;pretrain_epochs:0,dims_layers_ae:[10619, 7000, 4000, 500, 1000, 100],dims_layers_classifier:[100],batch_size:50,lr:0.001use_dropout:True,procedure:['training_all'],scale_loss:1.5,earlyStopping:10;0.5;0.5;0.0;0.5;0.0;0.5;0.5;0.0;0.5;0.0;0;0;39.3972532749176;0.039209996952730065
