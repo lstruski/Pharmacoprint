@@ -29,6 +29,14 @@ class AutoEncoder(nn.Module):
 
     def forward_encoder(self, x):
         return self.encoder(x)
+    
+    def reset_parameters(self):
+        for layer in self.encoder.children():
+            if hasattr(layer, 'reset_parameters'):
+                layer.reset_parameters()
+        for layer in self.decoder.children():
+            if hasattr(layer, 'reset_parameters'):
+                layer.reset_parameters()
 
 
 class Classifier(nn.Module):
@@ -45,3 +53,8 @@ class Classifier(nn.Module):
 
     def forward(self, z):
         return self.output(z)
+
+    def reset_parameters(self):
+        for layer in self.output.children():
+            if hasattr(layer, 'reset_parameters'):
+                layer.reset_parameters()

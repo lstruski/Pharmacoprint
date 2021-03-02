@@ -1,52 +1,28 @@
 import argparse
-# from datetime import datetime
+import time
+import warnings
+from os import environ
 from pathlib import Path, PurePosixPath
 
 import numpy as np
 import torch
-from scipy.sparse import load_npz
 from sklearn import svm
+from sklearn.exceptions import ConvergenceWarning
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score, matthews_corrcoef
+from sklearn.metrics import accuracy_score, roc_auc_score, matthews_corrcoef, balanced_accuracy_score, recall_score
 from sklearn.metrics import make_scorer
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import StratifiedShuffleSplit
-from tensorboardX import SummaryWriter
 from torch import nn
+from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
-
-class AutoEncoder(nn.Module):
-    def __init__(self, dims_layers, dropout=False):
-        super(AutoEncoder, self).__init__()
-
-        self.encoder = nn.Sequential()
-        for i in range(1, len(dims_layers)):
-            self.encoder.add_module('enc_dense{:d}'.format(i), nn.Linear(dims_layers[i - 1], dims_layers[i]))
-            self.encoder.add_module('enc_relu{:d}'.format(i), nn.ReLU(True))
-            if dropout:
-                self.encoder.add_module('enc_dropout{:d}'.format(i), nn.Dropout(0.25))
-
-        self.decoder = nn.Sequential()
-        size = len(dims_layers) - 1
-        for i in range(size - 1, 0, -1):
-            self.decoder.add_module('dec_dense{:d}'.format(size - i), nn.Linear(dims_layers[i + 1], dims_layers[i]))
-            self.decoder.add_module('dec_relu{:d}'.format(size - i), nn.ReLU(True))
-            if dropout:
-                self.decoder.add_module('dec_dropout{:d}'.format(size - i), nn.Dropout(0.25))
-        self.decoder.add_module('dec_dense{:d}'.format(size), nn.Linear(dims_layers[1], dims_layers[0]))
-        self.decoder.add_module('sigmoid', nn.Sigmoid())
-
-    def forward(self, x):
-        output_encoder = self.encoder(x)
-        output_decoder = self.decoder(output_encoder)
-        return output_encoder, output_decoder
-
-    def forward_encoder(self, x):
-        return self.encoder(x)
+from models import AutoEncoder
+from util import save_results
 
 
-def train_step(model_AE, criterion_AE, optimizer, data_train, target, device, writer_tensorboard, n_epoch, batch_size):
+def train_step(model_AE, criterion_AE, optimizer, scheduler, data_train, target, device, writer_tensorboard, n_epoch,
+               batch_size):
     model_AE.train()
 
     # create batch data
@@ -63,8 +39,10 @@ def train_step(model_AE, criterion_AE, optimizer, data_train, target, device, wr
     n_batch, rest = divmod(active_id.size, batch_size)
     n_batch = n_batch + 1 if rest else n_batch
 
+    time_work = 0
     train_tqdm = tqdm(range(n_batch), desc="Train loss", leave=False)
     for i in train_tqdm:
+        start_time = time.time()
         batch_idx = active_id[i * batch_size:(i + 1) * batch_size]
         batch_idx = np.concatenate((batch_idx, inactive_id[i * batch_size:(i + 1) * batch_size]), axis=0)
 
@@ -80,10 +58,15 @@ def train_step(model_AE, criterion_AE, optimizer, data_train, target, device, wr
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        if scheduler is not None:
+            scheduler.step()
+
+        end_time = time.time()
+        time_work += end_time - start_time
         # ===================log========================
         train_tqdm.set_description("Train loss AE: {:.5f}".format(loss.item()))
         writer_tensorboard.add_scalar('pre_train/trn_ae', loss, n_epoch * n_batch + i)
-    return loss.item()
+    return loss.item(), time_work
 
 
 def test_step(model_AE, criterion_AE, data_test, target, device, writer_tensorboard, n_epoch, batch_size):
@@ -128,10 +111,10 @@ def test_step(model_AE, criterion_AE, data_test, target, device, writer_tensorbo
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', default='./data/data', help='Name/path of target')
-    parser.add_argument('--name', default=['5HT2A'], nargs='+', help='Name of target')
-
+    parser.add_argument('--filename', required=True, help='Name/path of file')
+    parser.add_argument('--savefile', type=str, default='./output.txt', help='Path to file where will be save results')
     parser.add_argument('--class_weight', action='store_true', default=None, help='Use balance weight')
+    parser.add_argument('--seed', default=1234, help='Number of seed')
 
     parser.add_argument('--pretrain_epochs', type=int, default=100, help="Number of epochs to pretrain model AE")
     parser.add_argument('--dims_layers_ae', type=int, nargs='+', default=[500, 100, 10],
@@ -139,77 +122,82 @@ def main():
     parser.add_argument('--batch_size', type=int, default=50)
     parser.add_argument('--lr', type=float, default=0.001, help="Learning rate")
     parser.add_argument('--use_dropout', action='store_true', help="Use dropout")
-
     parser.add_argument('--no-cuda', action='store_true', help='disables CUDA training')
-    parser.add_argument('--seed', type=int, default=1234, help='random seed (default: 1)')
-
-    parser.add_argument('--save_dir', default='./outputs', help='Path to dictionary where will be save results.')
-    parser.add_argument('--ae', default=None, help='Path to saved model.')
-    parser.add_argument('--test', action='store_true', help='Test model')
+    parser.add_argument('--earlyStopping', type=int, default=None, help='Number of epochs to early stopping')
+    parser.add_argument('--use_scheduler', action='store_true')
     args = parser.parse_args()
+    print(args)
 
     np.random.seed(args.seed)
     torch.manual_seed(args.seed)
     use_cuda = not args.no_cuda and torch.cuda.is_available()
     device = torch.device("cuda" if use_cuda else "cpu")
+    print(f'Device: {device.type}')
 
-    id_file_target = 0
-    # current_date = datetime.now()
-    # current_date = current_date.strftime('%d%b_%H%M%S')
-    save_dir = f'{args.save_dir}/tensorboard/{args.name[id_file_target]}'
+    loaded = np.load(args.filename)
+    data = loaded['data']
+    labels = loaded['label']
+    del loaded
+
+    name_target = PurePosixPath(args.savefile).stem
+    save_dir = f'{PurePosixPath(args.savefile).parent}/tensorboard/{name_target}'
     Path(save_dir).mkdir(parents=True, exist_ok=True)
 
-    if 'pca' in PurePosixPath(args.data_dir).stem:
-        data = np.load(f'{args.data_dir}/{args.name[id_file_target]}.npz')['data']
-    else:
-        data = load_npz(f'{args.data_dir}/{args.name[id_file_target]}.npz').todense()
-    labels = np.load(f'{args.data_dir}/../label/{args.name[id_file_target]}.npz')['lab']
-
     args.dims_layers_ae = [data.shape[1]] + args.dims_layers_ae
-
-    sss = StratifiedShuffleSplit(n_splits=3, test_size=0.2, random_state=0)
-    for train_index, test_index in sss.split(data, labels):
-        # print("TRAIN:", train_index, "TEST:", test_index)
-        x_train, x_test = data[train_index], data[test_index]
-        y_train, y_test = labels[train_index], labels[test_index]
-        del train_index, test_index
-        break
-
     model_ae = AutoEncoder(args.dims_layers_ae, args.use_dropout).to(device)
-    if args.ae is not None:
-        if device.type == "cpu":
-            model_ae.load_state_dict(torch.load(args.model, map_location=lambda storage, loc: storage))
-        else:
-            model_ae.load_state_dict(torch.load(args.model))
-        model_ae.eval()
 
     criterion_ae = nn.MSELoss()
     optimizer = torch.optim.Adam(model_ae.parameters(), lr=args.lr, weight_decay=1e-5)
 
-    writer = SummaryWriter(logdir=save_dir)
-    epoch_tqdm = tqdm(range(args.pretrain_epochs), desc="Epoch pre-train loss")
+    scheduler = None
+    if args.use_scheduler:
+        scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda ep: 0.95)
+
+    min_val_loss = np.Inf
+    epochs_no_improve = 0
+    fit_time_ae = 0
+    writer = SummaryWriter(save_dir)
+    model_path = f'{PurePosixPath(args.savefile).parent}/models_AE/{name_target}.pth'
+    Path(PurePosixPath(model_path).parent).mkdir(parents=True, exist_ok=True)
+    epoch_tqdm = tqdm(range(args.pretrain_epochs), desc="Epoch loss")
     for epoch in epoch_tqdm:
-        loss_train = train_step(model_ae, criterion_ae, optimizer,
-                                x_train, y_train, device, writer, epoch, args.batch_size)
-        loss_test = test_step(model_ae, criterion_ae, x_test, y_test,
-                              device, writer, epoch, args.batch_size)
-        epoch_tqdm.set_description("Epoch pre-train loss: {:.5f}, test loss: {:.5f}".format(loss_train, loss_test))
+        loss_train, fit_t = train_step(model_ae, criterion_ae, optimizer, scheduler,
+                                       data, labels, device, writer, epoch, args.batch_size)
+        fit_time_ae += fit_t
+        if loss_train < min_val_loss:
+            torch.save(model_ae.state_dict(), model_path)
+            epochs_no_improve = 0
+            min_val_loss = loss_train
+        else:
+            epochs_no_improve += 1
+        epoch_tqdm.set_description(
+            f"Epoch loss: {loss_train:.5f} (minimal loss: {min_val_loss:.5f}, stop: {epochs_no_improve}|{args.earlyStopping})")
+        if args.earlyStopping is not None and epoch > args.earlyStopping and epochs_no_improve == args.earlyStopping:
+            print('\033[1;31mEarly stopping in AE model\033[0m')
+            break
 
     print('===================================================')
-    print('Transforming data to lower dimensional')
+    print(f'Transforming data to lower dimensional')
+    if device.type == "cpu":
+        model_ae.load_state_dict(torch.load(model_path, map_location=lambda storage, loc: storage))
+    else:
+        model_ae.load_state_dict(torch.load(model_path))
     model_ae.eval()
 
     low_data = np.empty((data.shape[0], args.dims_layers_ae[-1]))
     n_batch, rest = divmod(data.shape[0], args.batch_size)
     n_batch = n_batch + 1 if rest else n_batch
-
+    score_time_ae = 0
     with torch.no_grad():
         test_tqdm = tqdm(range(n_batch), desc="Transform data", leave=False)
         for i in test_tqdm:
+            start_time = time.time()
             batch = torch.from_numpy(data[i * args.batch_size:(i + 1) * args.batch_size, :]).float().to(device)
             # ===================forward=====================
             z, _ = model_ae(batch)
             low_data[i * args.batch_size:(i + 1) * args.batch_size, :] = z.detach().cpu().numpy()
+            end_time = time.time()
+            score_time_ae += end_time - start_time
     print('Data shape after transformation: {}'.format(low_data.shape))
     print('===================================================')
 
@@ -218,59 +206,72 @@ def main():
     else:
         args.class_weight = None
 
-    sss = StratifiedShuffleSplit(n_splits=3, test_size=0.2, random_state=0)
-    scoring = {'acc': make_scorer(accuracy_score), 'roc_auc': make_scorer(roc_auc_score),
-               'mcc': make_scorer(matthews_corrcoef)}
+    # Split data
+    sss = StratifiedShuffleSplit(n_splits=3, test_size=0.1, random_state=args.seed)
+    scoring = {'acc': make_scorer(accuracy_score), 'roc_auc': make_scorer(roc_auc_score, needs_proba=True),
+               'mcc': make_scorer(matthews_corrcoef), 'bal': make_scorer(balanced_accuracy_score),
+               'recall': make_scorer(recall_score)}
 
-    # Linear SVM
-    parameters = {'C': [0.01, 0.1, 1, 10, 100]}
-    svc = svm.LinearSVC(class_weight=args.class_weight, random_state=args.seed)
-    clf = GridSearchCV(svc, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc', return_train_score=True)
-    clf.fit(low_data, labels)
+    max_iters = 10000
+    save_results(args.savefile, 'w', 'model', None, True, fit_time_ae=fit_time_ae, score_time_ae=score_time_ae)
 
-    save_file = f'{args.save_dir}/{args.name[id_file_target]}.txt'
+    with warnings.catch_warnings():
+        warnings.simplefilter('ignore', ConvergenceWarning)
+        warnings.simplefilter('ignore', RuntimeWarning)
+        environ["PYTHONWARNINGS"] = "ignore"
 
-    with open(save_file, 'w') as f:
-        f.write('{:.4f} {:.5f} | ACC\n'.format(clf.cv_results_['mean_test_acc'][clf.best_index_],
-                                               clf.cv_results_['std_test_acc'][clf.best_index_]))
-        f.write('{:.4f} {:.5f} | ROC_AUC\n'.format(clf.cv_results_['mean_test_roc_auc'][clf.best_index_],
-                                                   clf.cv_results_['std_test_roc_auc'][clf.best_index_]))
-        f.write('{:.4f} {:.5f} | MCC\n'.format(clf.cv_results_['mean_test_mcc'][clf.best_index_],
-                                               clf.cv_results_['std_test_mcc'][clf.best_index_]))
-        f.write('\nBest_score for LinearSVC {:.4f} roc_auc\n'.format(clf.best_score_))
-        f.write('----------------------------------------------------\n')
+        # Linear SVM
+        print("\rLinear SVM         ", end='')
+        parameters = {'C': [0.01, 0.1, 1, 10, 100]}
+        # svc = svm.LinearSVC(class_weight=args.class_weight, random_state=seed)
+        svc = svm.SVC(kernel='linear', class_weight=args.class_weight, random_state=args.seed, probability=True,
+                      max_iter=max_iters)
+        clf = GridSearchCV(svc, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc',
+                           return_train_score=True)
+        try:
+            clf.fit(low_data, labels)
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
 
-    # RBF SVM
-    parameters = {'kernel': ['rbf'], 'C': [0.01, 0.1, 1, 10, 100], 'gamma': ['scale', 'auto', 1e-2, 1e-3, 1e-4]}
-    svc = svm.SVC(gamma="scale", class_weight=args.class_weight, random_state=args.seed)
-    clf = GridSearchCV(svc, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc', return_train_score=True)
-    clf.fit(low_data, labels)
-    with open(save_file, 'a') as f:
-        f.write('{:.4f} {:.5f} | ACC\n'.format(clf.cv_results_['mean_test_acc'][clf.best_index_],
-                                               clf.cv_results_['std_test_acc'][clf.best_index_]))
-        f.write('{:.4f} {:.5f} | ROC_AUC\n'.format(clf.cv_results_['mean_test_roc_auc'][clf.best_index_],
-                                                   clf.cv_results_['std_test_roc_auc'][clf.best_index_]))
-        f.write('{:.4f} {:.5f} | MCC\n'.format(clf.cv_results_['mean_test_mcc'][clf.best_index_],
-                                               clf.cv_results_['std_test_mcc'][clf.best_index_]))
-        f.write('\nBest_score for SVC RBF {:.4f} roc_auc\n'.format(clf.best_score_))
-        f.write('----------------------------------------------------\n')
+        save_results(args.savefile, 'a', 'Linear SVM', clf, False, fit_time_ae=fit_time_ae, score_time_ae=score_time_ae)
 
-    lreg = LogisticRegression(random_state=0, solver='lbfgs', multi_class='ovr', class_weight=args.class_weight,
-                              n_jobs=-1)
-    parameters = {'C': [0.01, 0.1, 1, 10, 100]}
-    clf = GridSearchCV(lreg, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc', return_train_score=True,
-                       error_score='raise')
-    clf.fit(low_data, labels)
+        # RBF SVM
+        print("\rRBF SVM             ", end='')
+        parameters = {'kernel': ['rbf'], 'C': [0.01, 0.1, 1, 10, 100], 'gamma': ['scale', 'auto', 1e-2, 1e-3, 1e-4]}
+        svc = svm.SVC(gamma="scale", class_weight=args.class_weight, random_state=args.seed, probability=True,
+                      max_iter=max_iters)
+        clf = GridSearchCV(svc, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc',
+                           return_train_score=True)
+        try:
+            clf.fit(low_data, labels)
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
+        save_results(args.savefile, 'a', 'RBF SVM', clf, False, fit_time_ae=fit_time_ae, score_time_ae=score_time_ae)
 
-    with open(save_file, 'a') as f:
-        f.write('{:.4f} {:.5f} | ACC\n'.format(clf.cv_results_['mean_test_acc'][clf.best_index_],
-                                               clf.cv_results_['std_test_acc'][clf.best_index_]))
-        f.write('{:.4f} {:.5f} | ROC_AUC\n'.format(clf.cv_results_['mean_test_roc_auc'][clf.best_index_],
-                                                   clf.cv_results_['std_test_roc_auc'][clf.best_index_]))
-        f.write('{:.4f} {:.5f} | MCC\n'.format(clf.cv_results_['mean_test_mcc'][clf.best_index_],
-                                               clf.cv_results_['std_test_mcc'][clf.best_index_]))
-        f.write('\nBest_score for LogisticRegression {:.4f} roc_auc\n'.format(clf.best_score_))
-        f.write('----------------------------------------------------\n')
+        # LogisticRegression
+        print("\rLogisticRegression  ", end='')
+        lreg = LogisticRegression(random_state=args.seed, solver='lbfgs', multi_class='ovr',
+                                  class_weight=args.class_weight,
+                                  n_jobs=-1, max_iter=max_iters)
+        parameters = {'C': [0.01, 0.1, 1, 10, 100]}
+        clf = GridSearchCV(lreg, parameters, cv=sss, n_jobs=-1, scoring=scoring, refit='roc_auc',
+                           return_train_score=True)
+        try:
+            clf.fit(low_data, labels)
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
+        save_results(args.savefile, 'a', 'LogisticRegression', clf, False, fit_time_ae=fit_time_ae,
+                     score_time_ae=score_time_ae)
+        print()
 
 
 if __name__ == '__main__':
