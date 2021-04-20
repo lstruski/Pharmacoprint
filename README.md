@@ -16,11 +16,11 @@ Please, install the following packages:
 
 # Data
 
-The input data can be downloaded from [here](https://ujchmura-my.sharepoint.com/:f:/g/personal/lukasz_struski_uj_edu_pl/Egao2rcXN8hGnTJtNH5cs88BsHzos__xiDA_Z-vsUvajwg?e=F7Sqer) because their size is too big to share them on Github.
+The input data can be downloaded from [here](http://ww2.ii.uj.edu.pl/~struski/results/Pharmacoprint/data.zip) because their size is too big to share them on Github.
 
 # Run
 
-To run the code, you should download the [data](https://ujchmura-my.sharepoint.com/:f:/g/personal/lukasz_struski_uj_edu_pl/EuhqkAVVAY1MhKqzb7263esBVnYm9MqDfE9BCaYRukfDpA?e=Ov8Q4O) directory and put it in the directory [source](./source).
+To run the code, you should download the [data](http://ww2.ii.uj.edu.pl/~struski/results/Pharmacoprint/data.zip) directory and put it in the directory [source](./source).
 
 The directory [source](./source) contains bash scripts to reproduce our results. Use the following commands to run subsequent models:
 ```bash
