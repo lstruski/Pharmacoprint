@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-data_dir=./data/inne_fingerprinty/data
-output_dir=./results/inne_fingerprinty/other/data
+data_dir=./data/other_fingerprints/data
+output_dir=./results/other_fingerprints/other/data
 
 for filename in $(find ${data_dir} -type f -name "*.npz"); do
   name="${filename##*/}"

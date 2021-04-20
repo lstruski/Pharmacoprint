@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-gpu=$1
+gpu=0 # GPU device number
 
 data_dir=./data/pharm_fingerprints/data/3D_H
 output_dir=./results/pharm_fingerprints/supervised_ae/data/3D_H
